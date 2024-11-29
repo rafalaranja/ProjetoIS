@@ -1,7 +1,20 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\IS\\Projeto\\SOMIODMiddleware\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\somiodmiddleware\\models\\container.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|solutionrelative:somiodmiddleware\\models\\container.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\somiodmiddleware\\models\\record.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|solutionrelative:somiodmiddleware\\models\\record.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\somiodmiddleware\\models\\application.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|solutionrelative:somiodmiddleware\\models\\application.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +22,49 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Record.cs",
+              "DocumentMoniker": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Models\\Record.cs",
+              "RelativeDocumentMoniker": "SOMIODMiddleware\\Models\\Record.cs",
+              "ToolTip": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Models\\Record.cs",
+              "RelativeToolTip": "SOMIODMiddleware\\Models\\Record.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:46:02.666Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Container.cs",
+              "DocumentMoniker": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Models\\Container.cs",
+              "RelativeDocumentMoniker": "SOMIODMiddleware\\Models\\Container.cs",
+              "ToolTip": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Models\\Container.cs",
+              "RelativeToolTip": "SOMIODMiddleware\\Models\\Container.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:44:25.282Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Application.cs",
+              "DocumentMoniker": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Models\\Application.cs",
+              "RelativeDocumentMoniker": "SOMIODMiddleware\\Models\\Application.cs",
+              "ToolTip": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Models\\Application.cs",
+              "RelativeToolTip": "SOMIODMiddleware\\Models\\Application.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:41:14.13Z"
             }
           ]
         }
