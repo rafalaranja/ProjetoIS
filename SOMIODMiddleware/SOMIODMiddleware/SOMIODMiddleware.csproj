@@ -105,6 +105,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\BD_PROJETO.mdf" />
+    <Content Include="App_Data\BD_PROJETO_log.ldf">
+      <DependentUpon>BD_PROJETO.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\Style.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -139,7 +143,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Data\" />
     <Folder Include="Views\Application\" />
     <Folder Include="Views\Container\" />

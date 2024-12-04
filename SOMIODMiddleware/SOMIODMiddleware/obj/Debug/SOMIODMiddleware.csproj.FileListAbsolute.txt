@@ -1,0 +1,2 @@
+C:\ISprojeto\ProjetoIS\SOMIODMiddleware\SOMIODMiddleware\obj\Debug\SOMIODMiddleware.csproj.AssemblyReference.cache
+C:\ISprojeto\ProjetoIS\SOMIODMiddleware\SOMIODMiddleware\obj\Debug\SOMIODMiddleware.csproj.CoreCompileInputs.cache
