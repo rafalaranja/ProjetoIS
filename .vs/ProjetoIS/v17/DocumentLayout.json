@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\ISprojeto\\ProjetoIS\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ISprojeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\SOMIODMiddleware.csproj.user||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SOMIODMiddleware\\SOMIODMiddleware\\SOMIODMiddleware.csproj.user||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -24,8 +29,17 @@
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SOMIODMiddleware.csproj.user",
+              "DocumentMoniker": "C:\\ISprojeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\SOMIODMiddleware.csproj.user",
+              "RelativeDocumentMoniker": "SOMIODMiddleware\\SOMIODMiddleware\\SOMIODMiddleware.csproj.user",
+              "ToolTip": "C:\\ISprojeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\SOMIODMiddleware.csproj.user",
+              "RelativeToolTip": "SOMIODMiddleware\\SOMIODMiddleware\\SOMIODMiddleware.csproj.user",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003464|",
+              "WhenOpened": "2024-12-04T16:40:42.071Z",
+              "EditorCaption": ""
             }
           ]
         }
