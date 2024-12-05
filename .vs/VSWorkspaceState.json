@@ -3,7 +3,9 @@
     "",
     "\\.github",
     "\\SOMIODMiddleware",
-    "\\SOMIODMiddleware\\SOMIODMiddleware"
+    "\\SOMIODMiddleware\\SOMIODMiddleware",
+    "\\SOMIODMiddleware\\SOMIODMiddleware\\Properties",
+    "\\SOMIODMiddleware\\SOMIODMiddleware\\Views"
   ],
   "SelectedNode": "\\SOMIODMiddleware\\SOMIODMiddleware.sln",
   "PreviewInSolutionExplorer": false

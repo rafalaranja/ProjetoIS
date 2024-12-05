@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SOMIODMiddleware.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ConnStr" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\BD_PROJETO.md" +
+"f;Integrated Security=True;Connect Timeout=30
+Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\BD_PROJETO.md" +
+"f;Integrated Security=True;Connect Timeout=30
+Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\BD_PROJETO.md" +
+"f;Integrated Security=True;Connect Timeout=30
+Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\BD_PROJETO.md" +
+"f;Integrated Security=True;Connect Timeout=30
+Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\BD_PROJETO.md" +
+"f;Integrated Security=True;Connect Timeout=30
+Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\BD_PROJETO.md" +
+"f;Integrated Security=True;Connect Timeout=30
+Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\BD_PROJETO.md" +
+"f;Integrated Security=True;Connect Timeout=30
+Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\BD_PROJETO.md" +
+"f;Integrated Security=True;Connect Timeout=30
+Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\BD_PROJETO.md" +
+"f;Integrated Security=True;Connect Timeout=30
+Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\BD_PROJETO.md" +
+"f;Integrated Security=True;Connect Timeout=30
+Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\BD_PROJETO.md" +
+"f;Integrated Security=True;Connect Timeout=30
+Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\BD_PROJETO.md" +
+"f;Integrated Security=True;Connect Timeout=30
+Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\BD_PROJETO.md" +
+"f;Integrated Security=True;Connect Timeout=30
+Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\BD_PROJETO.md"+
+"f;Integrated Security=True;Connect Timeout=30</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
