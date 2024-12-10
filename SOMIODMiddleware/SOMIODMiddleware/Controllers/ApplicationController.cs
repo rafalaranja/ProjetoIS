@@ -13,6 +13,7 @@ namespace SOMIODMiddleware.Controllers
     {
         private readonly ContainerController containerController = new ContainerController();
         private readonly ControllerHelper controllerHelper = new ControllerHelper();
+        string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SOMIODMiddleware.Properties.Settings.ConnStr"].ConnectionString;
 
         // Obtém todas as aplicações
         public List<Application> GetAllApplications()

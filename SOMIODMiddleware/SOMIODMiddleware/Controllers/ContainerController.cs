@@ -10,6 +10,7 @@ namespace SOMIODMiddleware.Controllers
     public class ContainerController : Controller
     {
         private readonly ControllerHelper controllerHelper = new ControllerHelper();
+        string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SOMIODMiddleware.Properties.Settings.ConnStr"].ConnectionString;
 
         // Gets all containers for a specific application
         public List<Container> GetContainersByApplicationId(int applicationId)
@@ -20,6 +21,7 @@ namespace SOMIODMiddleware.Controllers
             );
         }
 
+
         // Gets a specific container by its ID
         public Container GetContainerById(int id)
         {
@@ -29,6 +31,18 @@ namespace SOMIODMiddleware.Controllers
             );
 
             return containers.Count > 0 ? containers[0] : null;
+        }
+        public int GetContainerByNameAndParentId(String container, int applicationId)
+        {
+            List<Container> containerList = DataHelper.GetDataFromDatabase<Container>("SELECT * FROM Container WHERE Parent = @parent AND Name = @name", new Container { parent = applicationId, name = container });
+
+            int containerById = 0;
+            if (containerList.Count > 0)
+            {
+                containerById = containerList[0].id;
+            }
+
+            return containerById;
         }
 
         // Creates a new container
@@ -92,7 +106,7 @@ namespace SOMIODMiddleware.Controllers
         }
 
         // Creates a container in the database
-        private int CreateContainer(string name, int applicationId)
+        public int CreateContainer(string name, int applicationId)
         {
             return DataHelper.TransactWithDatabase<Container>(
                 "INSERT INTO Container (Name, ApplicationId) OUTPUT INSERTED.ID VALUES (@name, @applicationId)",
@@ -110,5 +124,6 @@ namespace SOMIODMiddleware.Controllers
 
             return containers.Count > 0 ? containers[0].id : 0;
         }
+       
     }
 }
