@@ -19,7 +19,7 @@ namespace SOMIODMiddleware.Controllers
         private readonly ContainerController containerController = new ContainerController();
         private readonly RecordController recordController = new RecordController();
         private readonly NotificationController notificationController = new NotificationController();
-        private readonly ControllerHelper utilsController = new ControllerHelper();
+        private readonly ControllerHelper controllerHelper = new ControllerHelper();
         private readonly ConnHelper connHelper = new ConnHelper();
 
         #region API Applications
@@ -36,13 +36,19 @@ namespace SOMIODMiddleware.Controllers
         [HttpPost]
         public IHttpActionResult PostApplication()
         {
-            XmlNode nodeApplication = utilsController.BuildXmlNodeFromRequest("Application");
-            if (!nodeApplication.HasChildNodes)
-                return BadRequest("Empty request body.");
-
-            string applicationName = nodeApplication["name"].InnerText;
-            if (string.IsNullOrWhiteSpace(applicationName))
+            XmlNode nodeApplication = controllerHelper.BuildXmlNodeFromRequest("Application");
+            if (nodeApplication == null || !nodeApplication.HasChildNodes)
+            {
+                return BadRequest("Empty or invalid request body.");
+            }
+            XmlNode nameNode = nodeApplication["name"];
+            if (nameNode == null || string.IsNullOrWhiteSpace(nameNode.InnerText))
+            {
                 return BadRequest("Application name is required.");
+            }
+
+            string applicationName = nameNode.InnerText;
+
 
             if (!applicationController.IsApplicationNameAvailable(applicationName))
                 return BadRequest("Application name is already taken.");
@@ -87,7 +93,7 @@ namespace SOMIODMiddleware.Controllers
             if (applicationId == 0)
                 return BadRequest("Application does not exist.");
 
-            XmlNode nodeContainer = utilsController.BuildXmlNodeFromRequest("Container");
+            XmlNode nodeContainer = controllerHelper.BuildXmlNodeFromRequest("Container");
             if (!nodeContainer.HasChildNodes)
                 return BadRequest("Empty request body.");
 
@@ -132,7 +138,7 @@ namespace SOMIODMiddleware.Controllers
             if (containerId == 0)
                 return BadRequest("Container does not exist.");
 
-            XmlNode nodeRecord = utilsController.BuildXmlNodeFromRequest("Record");
+            XmlNode nodeRecord = controllerHelper.BuildXmlNodeFromRequest("Record");
             if (!nodeRecord.HasChildNodes)
                 return BadRequest("Empty request body.");
 
@@ -164,10 +170,6 @@ namespace SOMIODMiddleware.Controllers
             return Ok("Record deleted successfully.");
         }
 
-        private IHttpActionResult BadRequest(string v)
-        {
-            throw new NotImplementedException();
-        }
 
         #endregion
 
@@ -185,7 +187,7 @@ namespace SOMIODMiddleware.Controllers
             if (containerId == 0)
                 return BadRequest("Container does not exist.");
 
-            XmlNode nodeNotification = utilsController.BuildXmlNodeFromRequest("Notification");
+            XmlNode nodeNotification = controllerHelper.BuildXmlNodeFromRequest("Notification");
             if (!nodeNotification.HasChildNodes)
                 return BadRequest("Empty request body.");
 

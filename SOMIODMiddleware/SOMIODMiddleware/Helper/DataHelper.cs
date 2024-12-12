@@ -12,7 +12,6 @@ namespace SOMIODMiddleware.Helper
 {
     public class DataHelper
     {
-        private static readonly string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SOMIODMiddleware.Properties.Settings.ConnStr"].ConnectionString;
 
         
         /// Obtém dados genéricos da base de dados e os mapeia para uma lista de objetos do tipo T
@@ -21,7 +20,8 @@ namespace SOMIODMiddleware.Helper
         {
             List<T> list = new List<T>(); // Lista genérica para armazenar os resultados
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["SOMIODMiddleware.Properties.Settings.ConnStr"].ConnectionString))
+
             {
                 conn.Open();
                 using (SqlCommand command = new SqlCommand(query, conn))
@@ -50,7 +50,8 @@ namespace SOMIODMiddleware.Helper
        
         public static int TransactWithDatabase<T>(string query, T dataObject)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["SOMIODMiddleware.Properties.Settings.ConnStr"].ConnectionString))
+
             {
                 conn.Open();
                 using (SqlCommand command = new SqlCommand(query, conn))
