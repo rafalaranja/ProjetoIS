@@ -13,41 +13,48 @@ namespace SOMIODMiddleware.Helper
     public class DataHelper
     {
 
-        
+
         /// Obtém dados genéricos da base de dados e os mapeia para uma lista de objetos do tipo T
-       
+
         public static List<T> GetDataFromDatabase<T>(string query, T dataObject)
         {
-            List<T> list = new List<T>(); // Lista genérica para armazenar os resultados
+            List<T> list = new List<T>();
 
-            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["SOMIODMiddleware.Properties.Settings.ConnStr"].ConnectionString))
-
+            try
             {
-                conn.Open();
-                using (SqlCommand command = new SqlCommand(query, conn))
+                using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["stringConnection"].ConnectionString))
                 {
-                    command.CommandType = CommandType.Text;
+                    conn.Open();
 
-                    if (dataObject != null)
+                    using (SqlCommand command = new SqlCommand(query, conn))
                     {
-                        AddParametersToCommand(command, dataObject);
-                    }
+                        command.CommandType = CommandType.Text;
 
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        list = DataReaderMapToList<T>(reader); // Mapeia os resultados do reader para a lista
-                        reader.Close();
+                        if (dataObject != null)
+                        {
+                            AddParametersToCommand(command, dataObject);
+                        }
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            list = DataReaderMapToList<T>(reader);
+                        }
                     }
-                    
                 }
-                conn.Close();
             }
+            catch (Exception ex)
+            {
+                // Logar ou tratar o erro
+                throw new Exception("Erro ao acessar o banco de dados.", ex);
+            }
+
             return list;
         }
 
-        
+
+
         /// Executa uma operação de transação na base de dados e retorna o ID gerado
-       
+
         public static int TransactWithDatabase<T>(string query, T dataObject)
         {
             using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["SOMIODMiddleware.Properties.Settings.ConnStr"].ConnectionString))
