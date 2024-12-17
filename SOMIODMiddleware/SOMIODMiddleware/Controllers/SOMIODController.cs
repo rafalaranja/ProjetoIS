@@ -8,6 +8,7 @@ using System.Web.Http;
 using System.Xml;
 using SOMIODMiddleware.Controllers;
 using SOMIODMiddleware.Models;
+using Microsoft.AspNet.SignalR;
 
 
 
@@ -24,17 +25,34 @@ namespace SOMIODMiddleware.Controllers
 
         #region API Applications
 
-        [Route("api/somiod/applications")]
+        [Route("api/somiod")]
         [HttpGet]
         public IHttpActionResult GetAllApplications()
         {
-            var applications = applicationController.GetAllApplications();
-            return Ok(applications);
+            System.Net.Http.Headers.HttpRequestHeaders headers = this.Request.Headers;
+
+            if (headers.Contains("somiod-locate"))
+            {  //OK
+                var valor = headers.GetValues("somiod-locate").First();  //build error - not OK
+                switch (valor)
+                {
+                    case "application":
+                        var applications = applicationController.GetAllApplications(); //mydar para uma função q va buscar so o nome
+                        return Ok(applications);
+                    default:
+                        break;
+                }
+            }
+            else
+                {
+                    var applications = applicationController.GetAllApplications();
+                    return Ok(applications);
+                }
         }
 
-        [Route("api/somiod/applications")]
+        [Route("api/somiod")]
         [HttpPost]
-        public IHttpActionResult PostApplication()
+        public IHttpActionResult PostApplication() //caso o nome ja exista, dar outro nome (date time sque) e devolver o nome da app criada, NAO o id
         {
             XmlNode nodeApplication = controllerHelper.BuildXmlNodeFromRequest("Application");
             if (nodeApplication == null || !nodeApplication.HasChildNodes)
@@ -57,7 +75,7 @@ namespace SOMIODMiddleware.Controllers
             return Ok($"Application created successfully with ID: {appId}");
         }
 
-        [Route("api/somiod/applications/{applicationId}")]
+        [Route("api/somiod/{applicationId}")]
         [HttpPut]
         public IHttpActionResult PutApplication(int applicationId)
         {
@@ -78,7 +96,7 @@ namespace SOMIODMiddleware.Controllers
             return Ok("Application name updated successfully.");
         }
 
-        [Route("api/somiod/applications/{applicationId}")]
+        [Route("api/somiod/{applicationId}")]
         [HttpDelete]
         public IHttpActionResult DeleteApplication(int applicationId)
         {
