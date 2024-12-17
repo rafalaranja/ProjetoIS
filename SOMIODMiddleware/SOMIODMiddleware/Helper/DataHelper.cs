@@ -22,7 +22,7 @@ namespace SOMIODMiddleware.Helper
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["stringConnection"].ConnectionString))
+                using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["SOMIODMiddleware.Properties.Settings.ConnStr\r\n"].ConnectionString))
                 {
                     conn.Open();
 
