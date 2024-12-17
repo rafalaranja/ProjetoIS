@@ -84,8 +84,8 @@
               "Title": "DataHelper.cs",
               "DocumentMoniker": "C:\\Users\\jhdav\\Desktop\\IS\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Helper\\DataHelper.cs",
               "RelativeDocumentMoniker": "SOMIODMiddleware\\Helper\\DataHelper.cs",
-              "ToolTip": "C:\\Users\\jhdav\\Desktop\\IS\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Helper\\DataHelper.cs*",
-              "RelativeToolTip": "SOMIODMiddleware\\Helper\\DataHelper.cs*",
+              "ToolTip": "C:\\Users\\jhdav\\Desktop\\IS\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Helper\\DataHelper.cs",
+              "RelativeToolTip": "SOMIODMiddleware\\Helper\\DataHelper.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAmwBkAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-12T17:02:45.838Z",
@@ -161,8 +161,7 @@
               "RelativeToolTip": "SOMIODMiddleware\\Controllers\\SOMIODController.cs",
               "ViewState": "AQIAAB8AAAAAAAAAAAAQwDoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T15:21:55.603Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-12T15:21:55.603Z"
             },
             {
               "$type": "Document",

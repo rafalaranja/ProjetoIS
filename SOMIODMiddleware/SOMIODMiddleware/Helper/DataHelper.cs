@@ -38,8 +38,10 @@ namespace SOMIODMiddleware.Helper
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             list = DataReaderMapToList<T>(reader);
+                            reader.Close();
                         }
                     }
+                    conn.Close();
                 }
             }
             catch (Exception ex)

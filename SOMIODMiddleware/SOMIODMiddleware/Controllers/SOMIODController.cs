@@ -57,17 +57,18 @@ namespace SOMIODMiddleware.Controllers
             return Ok($"Application created successfully with ID: {appId}");
         }
 
-        [Route("api/somiod/applications/{application}")]
+        [Route("api/somiod/applications/{applicationId}")]
         [HttpDelete]
-        public IHttpActionResult DeleteApplication(string application)
+        public IHttpActionResult DeleteApplication(int applicationId)
         {
-            int applicationId = applicationController.GetApplicationIdByName(application);
             if (applicationId == 0)
                 return BadRequest("Application does not exist.");
 
             applicationController.DeleteApplication(applicationId);
             return Ok("Application deleted successfully.");
         }
+
+
 
         #endregion
 

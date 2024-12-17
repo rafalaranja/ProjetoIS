@@ -84,11 +84,11 @@ namespace SOMIODMiddleware.Controllers
                     new Container { id = containerID }
                 );
                 DataHelper.TransactWithDatabase<Notification>(
-                    "DELETE FROM Subscription WHERE Subscription.Parent = @parent",
+                    "DELETE FROM Notification WHERE Notification.Parent = @parent",
                     new Notification { parent = containerID }
                 );
                 DataHelper.TransactWithDatabase<Record>(
-                    "DELETE FROM Data WHERE Data.Parent = @parent",
+                    "DELETE FROM Record WHERE DataRecord.Parent = @parent",
                     new Record { parent = containerID }
                 );
             }
