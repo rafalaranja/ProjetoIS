@@ -294,6 +294,23 @@ namespace SOMIODMiddleware.Controllers
             notificationController.CreateNotification(notificationName, containerId, notificationEvent, endpoint);
             return Ok($"Notification created successfully with name: {notificationName}");
         }
+
+        [Route("api/somiod/{applicationName}/{containerName}/notifications/{notificationName}")]
+        [HttpDelete]
+        public IHttpActionResult DeleteNotification(string applicationName, string containerName, string notificationName)
+        {
+            int applicationId = applicationController.GetApplicationIdByName(applicationName);
+            if (applicationId == 0)
+                return BadRequest("Application does not exist.");
+            int containerId = containerController.GetContainerByNameAndParentId(containerName, applicationId);
+            if (containerId == 0)
+                return BadRequest("Container does not exist.");
+            int notificationId = notificationController.GetNotificationByNameAndParentId(notificationName, containerId);
+            if (notificationId == 0)
+                return BadRequest("Notification does not exist.");
+            notificationController.DeleteNotification(notificationId);
+            return Ok("Notification deleted successfully.");
+        }
         #endregion
     }
 
