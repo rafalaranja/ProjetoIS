@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http.Results;
 using System.Web.Mvc;
 using System.Xml;
 using SOMIODMiddleware.Helper;
@@ -74,24 +75,25 @@ namespace SOMIODMiddleware.Controllers
         // Elimina uma aplicação e os seus dados associados
         public string DeleteApplication(int id)
         {
-            // Elimina os dados relacionados à aplicação
-            int containerID = containerController.GetContainerIdByParentId(id);
-            if (containerID > 0)
-            {
-                // Elimina o container e as dependências relacionadas
-                DataHelper.TransactWithDatabase<Container>(
-                    "DELETE FROM Container WHERE Container.Id = @id",
-                    new Container { id = containerID }
-                );
-                DataHelper.TransactWithDatabase<Notification>(
-                    "DELETE FROM Notification WHERE Notification.Parent = @parent",
-                    new Notification { parent = containerID }
-                );
-                DataHelper.TransactWithDatabase<Record>(
-                    "DELETE FROM Record WHERE DataRecord.Parent = @parent",
-                    new Record { parent = containerID }
-                );
-            }
+            // TODO: Eliminar os dados relacionados à aplicação
+
+            //int containerID = containerController.GetContainerIdByParentId(id);
+            //if (containerID > 0)
+            //{
+            //    //Elimina o container e as dependências relacionadas
+            //    DataHelper.TransactWithDatabase<Container>(
+            //        "DELETE FROM Container WHERE Container.Id = @id",
+            //        new Container { id = containerID }
+            //    );
+            //    DataHelper.TransactWithDatabase<Notification>(
+            //        "DELETE FROM Notification WHERE Notification.Parent = @parent",
+            //        new Notification { parent = containerID }
+            //    );
+            //    DataHelper.TransactWithDatabase<Record>(
+            //        "DELETE FROM Record WHERE DataRecord.Parent = @parent",
+            //        new Record { parent = containerID }
+            //    );
+            //}
 
             // Elimina a aplicação
             DataHelper.TransactWithDatabase<Application>(
