@@ -283,11 +283,16 @@ namespace SOMIODMiddleware.Controllers
             string notificationEvent = nodeNotification["event"].InnerText;
             string endpoint = nodeNotification["endpoint"].InnerText;
 
+            if(notificationController.GetNotificationByNameAndParentId(notificationName, containerId) > 0)
+            {
+                notificationName = notificationName + DateTime.Now.ToString("yyyyMMddHHmmss");
+            }
+
             if (string.IsNullOrWhiteSpace(notificationName) || string.IsNullOrWhiteSpace(notificationEvent) || string.IsNullOrWhiteSpace(endpoint))
                 return BadRequest("Notification name, event, and endpoint are required.");
 
-            int notificationId = notificationController.CreateNotification(notificationName, containerId, notificationEvent, endpoint);
-            return Ok($"Notification created successfully with ID: {notificationId}");
+            notificationController.CreateNotification(notificationName, containerId, notificationEvent, endpoint);
+            return Ok($"Notification created successfully with name: {notificationName}");
         }
         #endregion
     }
