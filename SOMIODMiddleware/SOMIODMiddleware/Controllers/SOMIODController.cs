@@ -64,21 +64,26 @@ namespace SOMIODMiddleware.Controllers
             {
                 return BadRequest("Application name is required.");
             }
-
             string applicationName = nameNode.InnerText;
 
-
             if (!applicationController.IsApplicationNameAvailable(applicationName))
-                return BadRequest("Application name is already taken.");
+            {
+                //adicionar valor aleatorio ao nome
+                Random random = new Random();
+                int randomNumber = random.Next(0, 1000);
+                nameNode.InnerText = nameNode.InnerText + randomNumber;
 
-            int appId = applicationController.CreateApplication(applicationName);
-            return Ok($"Application created successfully with ID: {appId}");
+            }
+            applicationController.CreateApplication(applicationName);
+
+            return Ok($"Application created successfully with name: {applicationName}");
         }
 
-        [Route("api/somiod/{applicationId}")]
+        [Route("api/somiod/{applicationName}")]
         [HttpPut]
-        public IHttpActionResult PutApplication(int applicationId)
+        public IHttpActionResult PutApplication(string applicationName)
         {
+            int applicationId = applicationController.GetApplicationIdByName(applicationName);
             XmlNode nodeApplication = controllerHelper.BuildXmlNodeFromRequest("Application");
             if (nodeApplication == null || !nodeApplication.HasChildNodes)
             {
@@ -89,17 +94,17 @@ namespace SOMIODMiddleware.Controllers
             {
                 return BadRequest("Application name is required.");
             }
-            string applicationName = nameNode.InnerText;
             if (!applicationController.IsApplicationNameAvailable(applicationName))
                 return BadRequest("Application name is already taken.");
             applicationController.PutApplication(applicationName, applicationId);
             return Ok("Application name updated successfully.");
         }
 
-        [Route("api/somiod/{applicationId}")]
+        [Route("api/somiod/{applicationName}")]
         [HttpDelete]
-        public IHttpActionResult DeleteApplication(int applicationId)
+        public IHttpActionResult DeleteApplication(string applicationName)
         {
+            int applicationId = applicationController.GetApplicationIdByName(applicationName);
             if (applicationId == 0)
                 return BadRequest("Application does not exist.");
 
