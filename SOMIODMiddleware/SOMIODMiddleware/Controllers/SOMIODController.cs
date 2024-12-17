@@ -58,6 +58,27 @@ namespace SOMIODMiddleware.Controllers
         }
 
         [Route("api/somiod/applications/{applicationId}")]
+        [HttpPut]
+        public IHttpActionResult PutApplication(int applicationId)
+        {
+            XmlNode nodeApplication = controllerHelper.BuildXmlNodeFromRequest("Application");
+            if (nodeApplication == null || !nodeApplication.HasChildNodes)
+            {
+                return BadRequest("Empty or invalid request body.");
+            }
+            XmlNode nameNode = nodeApplication["name"];
+            if (nameNode == null || string.IsNullOrWhiteSpace(nameNode.InnerText))
+            {
+                return BadRequest("Application name is required.");
+            }
+            string applicationName = nameNode.InnerText;
+            if (!applicationController.IsApplicationNameAvailable(applicationName))
+                return BadRequest("Application name is already taken.");
+            applicationController.PutApplication(applicationName, applicationId);
+            return Ok("Application name updated successfully.");
+        }
+
+        [Route("api/somiod/applications/{applicationId}")]
         [HttpDelete]
         public IHttpActionResult DeleteApplication(int applicationId)
         {
