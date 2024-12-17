@@ -64,6 +64,7 @@ namespace SOMIODMiddleware.Controllers
             }
         }
 
+
         [Route("api/somiod")]
         [HttpPost]
         public IHttpActionResult PostApplication() //caso o nome ja exista, dar outro nome (date time sque) e devolver o nome da app criada, NAO o id
@@ -82,11 +83,8 @@ namespace SOMIODMiddleware.Controllers
 
             if (!applicationController.IsApplicationNameAvailable(applicationName))
             {
-                //adicionar valor aleatorio ao nome
-                Random random = new Random();
-                int randomNumber = random.Next(0, 1000);
-                nameNode.InnerText = nameNode.InnerText + randomNumber;
-
+                //adicionar datetime
+                applicationName = applicationName + DateTime.Now.ToString("yyyyMMddHHmmss");
             }
             applicationController.CreateApplication(applicationName);
 
@@ -132,45 +130,6 @@ namespace SOMIODMiddleware.Controllers
 
         #region API Containers
 
-        [Route("api/somiod/{applicationName}")]
-        [HttpGet]
-        public IHttpActionResult GetAllContainers()
-        {
-            System.Net.Http.Headers.HttpRequestHeaders headers = this.Request.Headers;
-
-            if (headers.Contains("somiod-locate"))
-            {  //OK
-                var valor = headers.GetValues("somiod-locate").First();  //build error - not OK
-                switch (valor)
-                {
-                    case "application":
-                        var applications = applicationController.GetAllApplicationNames();
-                        return Ok(applications);
-
-                    case "container":
-                        var containers = containerController.GetAllContainersNames();
-                        return Ok(containers);
-
-                    case "record":
-                        var records = recordController.GetAllRecordsNames();
-                        return Ok(records);
-
-                    case "notification":
-                        var notifications = notificationController.GetAllNotificationsNames();
-                        return Ok(notifications);
-
-                    default:
-                        return null;
-
-                }
-            }
-            else
-            {
-                var applications = applicationController.GetAllApplications();
-                return Ok(applications);
-            }
-        }
-
         [Route("api/somiod/applications/{application}/containers")]
         [HttpGet]
         public IHttpActionResult GetContainersByApplication(string application)
@@ -183,11 +142,11 @@ namespace SOMIODMiddleware.Controllers
             return Ok(containers);
         }
 
-        [Route("api/somiod/applications/{application}/containers")]
+        [Route("api/somiod/{applicationName}")]
         [HttpPost]
-        public IHttpActionResult PostContainer(string application)
+        public IHttpActionResult PostContainer(string applicationName)
         {
-            int applicationId = applicationController.GetApplicationIdByName(application);
+            int applicationId = applicationController.GetApplicationIdByName(applicationName);
             if (applicationId == 0)
                 return BadRequest("Application does not exist.");
 
@@ -198,20 +157,48 @@ namespace SOMIODMiddleware.Controllers
             string containerName = nodeContainer["name"].InnerText;
             if (string.IsNullOrWhiteSpace(containerName))
                 return BadRequest("Container name is required.");
+            if (containerController.GetContainerByNameAndParentId(containerName, applicationId) > 0)
+            {
+                containerName = containerName + DateTime.Now.ToString("yyyyMMddHHmmss");
+            }
 
-            int containerId = containerController.CreateContainer(containerName, applicationId);
-            return Ok($"Container created successfully with ID: {containerId}");
+            containerController.CreateContainer(containerName, applicationId);
+            return Ok($"Container created successfully with ID: {containerName}");
         }
 
-        [Route("api/somiod/applications/{application}/containers/{container}")]
-        [HttpDelete]
-        public IHttpActionResult DeleteContainer(string application, string container)
+        [Route("api/somiod/{applicationName}/{containerName}")]
+        [HttpPut]
+        public IHttpActionResult PutContainer(string applicationName, string containerName)
         {
-            int applicationId = applicationController.GetApplicationIdByName(application);
+            int applicationId = applicationController.GetApplicationIdByName(applicationName);
+            if (applicationId == 0)
+                return BadRequest("Application does not exist.");
+            int containerId = containerController.GetContainerByNameAndParentId(containerName, applicationId);
+            if (containerId == 0)
+                return BadRequest("Container does not exist.");
+            XmlNode nodeContainer = controllerHelper.BuildXmlNodeFromRequest("Container");
+            if (!nodeContainer.HasChildNodes)
+                return BadRequest("Empty request body.");
+            string newContainerName = nodeContainer["name"].InnerText;
+            if (string.IsNullOrWhiteSpace(newContainerName))
+                return BadRequest("Container name is required.");
+            if (containerController.GetContainerByNameAndParentId(newContainerName, applicationId) > 0)
+            {
+                return BadRequest("Container name is already taken.");
+            }
+            containerController.PutContainer(newContainerName, containerId);
+            return Ok("Container name updated successfully.");
+        }
+
+        [Route("api/somiod/{applicationName}/{containerName}")]
+        [HttpDelete]
+        public IHttpActionResult DeleteContainer(string applicationName, string containerName)
+        {
+            int applicationId = applicationController.GetApplicationIdByName(applicationName);
             if (applicationId == 0)
                 return BadRequest("Application does not exist.");
 
-            int containerId = containerController.GetContainerByNameAndParentId(container, applicationId);
+            int containerId = containerController.GetContainerByNameAndParentId(containerName, applicationId);
             if (containerId == 0)
                 return BadRequest("Container does not exist.");
 
@@ -219,20 +206,20 @@ namespace SOMIODMiddleware.Controllers
             return Ok("Container deleted successfully.");
         }
 
-      
+
         #endregion
 
         #region API Records (Data)
 
-        [Route("api/somiod/applications/{application}/containers/{container}/records")]
+        [Route("api/somiod/{applicationName}/{containerName}/records")]
         [HttpPost]
-        public IHttpActionResult PostRecord(string application, string container)
+        public IHttpActionResult PostRecord(string applicationName, string containerName)
         {
-            int applicationId = applicationController.GetApplicationIdByName(application);
+            int applicationId = applicationController.GetApplicationIdByName(applicationName);
             if (applicationId == 0)
                 return BadRequest("Application does not exist.");
 
-            int containerId = containerController.GetContainerByNameAndParentId(container, applicationId);
+            int containerId = containerController.GetContainerByNameAndParentId(containerName, applicationId);
             if (containerId == 0)
                 return BadRequest("Container does not exist.");
 
@@ -240,30 +227,33 @@ namespace SOMIODMiddleware.Controllers
             if (!nodeRecord.HasChildNodes)
                 return BadRequest("Empty request body.");
 
-            string recordContent = nodeRecord["content"].InnerText;
-            if (string.IsNullOrWhiteSpace(recordContent))
+            string recordName = nodeRecord["content"].InnerText;
+            if (string.IsNullOrWhiteSpace(recordName))
                 return BadRequest("Record content is required.");
+            if (recordController.GetRecordByContentAndParentId(recordName, containerId) > 0)
+            {
+                recordName = recordName + DateTime.Now.ToString("yyyyMMddHHmmss");
+            }
+            recordController.CreateRecord(recordName, containerId);
+            connHelper.EmitMessageToTopic($"{applicationName}/{containerName}/creation", recordName);
 
-            int recordId = recordController.CreateRecord(recordContent, containerId);
-            connHelper.EmitMessageToTopic($"{application}/{container}/creation", recordContent);
-
-            return Ok($"Record created successfully with ID: {recordId}");
+            return Ok($"Record created successfully with name: {recordName}");
         }
 
-        [Route("api/somiod/applications/{application}/containers/{container}/records/{recordId}")]
+        [Route("api/somiod/{applicationName}/{containerName}/records/{recordId}")]
         [HttpDelete]
-        public IHttpActionResult DeleteRecord(string application, string container, int recordId)
+        public IHttpActionResult DeleteRecord(string applicationName, string containerName, int recordId)
         {
-            int applicationId = applicationController.GetApplicationIdByName(application);
+            int applicationId = applicationController.GetApplicationIdByName(applicationName);
             if (applicationId == 0)
                 return BadRequest("Application does not exist.");
 
-            int containerId = containerController.GetContainerByNameAndParentId(container, applicationId);
+            int containerId = containerController.GetContainerByNameAndParentId(containerName, applicationId);
             if (containerId == 0)
                 return BadRequest("Container does not exist.");
 
             recordController.DeleteRecord(recordId);
-            connHelper.EmitMessageToTopic($"{application}/{container}/deletion", $"Deleted record ID: {recordId}");
+            connHelper.EmitMessageToTopic($"{applicationName}/{containerName}/deletion", $"Deleted record ID: {recordId}");
 
             return Ok("Record deleted successfully.");
         }
@@ -273,15 +263,15 @@ namespace SOMIODMiddleware.Controllers
 
         #region API Notifications (Subscriptions)
 
-        [Route("api/somiod/applications/{application}/containers/{container}/notifications")]
+        [Route("api/somiod/{applicationName}/{containerName}/notifications")]
         [HttpPost]
-        public IHttpActionResult PostNotification(string application, string container)
+        public IHttpActionResult PostNotification(string applicationName, string containerName)
         {
-            int applicationId = applicationController.GetApplicationIdByName(application);
+            int applicationId = applicationController.GetApplicationIdByName(applicationName);
             if (applicationId == 0)
                 return BadRequest("Application does not exist.");
 
-            int containerId = containerController.GetContainerByNameAndParentId(container, applicationId);
+            int containerId = containerController.GetContainerByNameAndParentId(containerName, applicationId);
             if (containerId == 0)
                 return BadRequest("Container does not exist.");
 

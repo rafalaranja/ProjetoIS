@@ -78,5 +78,17 @@ namespace SOMIODMiddleware.Controllers
             var records = GetRecordById(recordId.ToString());
             return records != null && records.Count > 0;
         }
+
+        public int GetRecordByContentAndParentId(String content, int containerId)
+        {
+            List<Record> recordList = DataHelper.GetDataFromDatabase<Record>("SELECT * FROM Record WHERE Parent = @parent AND Content = @content", new Record { parent = containerId, content = content });
+            int recordById = 0;
+            if (recordList.Count > 0)
+            {
+                recordById = recordList[0].id;
+            }
+            return recordById;
+        }
+
     }
 }
