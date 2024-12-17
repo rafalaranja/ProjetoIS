@@ -37,7 +37,17 @@ namespace SOMIODMiddleware.Helper
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            list = DataReaderMapToList<T>(reader);
+                            if (typeof(T) == typeof(string)) // Verifica se T é string
+                            {
+                                while (reader.Read())
+                                {
+                                    list.Add((T)(object)reader.GetString(0)); // Converte o primeiro valor da linha para string
+                                }
+                            }
+                            else
+                            {
+                                list = DataReaderMapToList<T>(reader); // Usa o método padrão para mapeamento
+                            }
                             reader.Close();
                         }
                     }
@@ -52,6 +62,7 @@ namespace SOMIODMiddleware.Helper
 
             return list;
         }
+
 
 
 

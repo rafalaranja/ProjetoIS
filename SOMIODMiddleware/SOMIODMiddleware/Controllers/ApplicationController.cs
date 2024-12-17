@@ -16,6 +16,15 @@ namespace SOMIODMiddleware.Controllers
         private readonly ControllerHelper controllerHelper = new ControllerHelper();
         string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SOMIODMiddleware.Properties.Settings.ConnStr"].ConnectionString;
 
+        // Obtém o nome de todas as aplicações
+        public List<string> GetAllApplicationNames()
+        {
+            return DataHelper.GetDataFromDatabase<string>(
+                "SELECT name FROM Application ORDER BY Id",
+                null
+            );
+        }
+
         // Obtém todas as aplicações
         public List<Application> GetAllApplications()
         {

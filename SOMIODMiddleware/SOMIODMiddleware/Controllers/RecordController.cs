@@ -13,6 +13,25 @@ namespace SOMIODMiddleware.Controllers
         private ContainerController containerController = new ContainerController();
         string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SOMIODMiddleware.Properties.Settings.ConnStr"].ConnectionString;
 
+        // Obtém o nome de todas os Records
+        public List<string> GetAllRecordsNames()
+        {
+            return DataHelper.GetDataFromDatabase<string>(
+                "SELECT name FROM Record ORDER BY Id",
+                null
+            );
+        }
+
+        // Obtém todas os records
+        public List<Record> GetAllRecords()
+        {
+            return DataHelper.GetDataFromDatabase<Record>(
+                "SELECT name FROM Record ORDER BY Id",
+                null
+            );
+        }
+
+
         // Cria um novo registo associado a um container
         public int CreateRecord(string content, int containerId)
         {

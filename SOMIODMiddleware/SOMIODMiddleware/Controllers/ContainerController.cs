@@ -12,6 +12,25 @@ namespace SOMIODMiddleware.Controllers
         private readonly ControllerHelper controllerHelper = new ControllerHelper();
         string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SOMIODMiddleware.Properties.Settings.ConnStr"].ConnectionString;
 
+
+        // Obtém o nome de todas os Containers
+        public List<string> GetAllContainersNames()
+        {
+            return DataHelper.GetDataFromDatabase<string>(
+                "SELECT name FROM Container ORDER BY Id",
+                null
+            );
+        }
+
+        // Obtém todas os container
+        public List<Container> GetAllContainers()
+        {
+            return DataHelper.GetDataFromDatabase<Container>(
+                "SELECT name FROM Container ORDER BY Id",
+                null
+            );
+        }
+
         // Gets all containers for a specific application
         public List<Container> GetContainersByApplicationId(int applicationId)
         {

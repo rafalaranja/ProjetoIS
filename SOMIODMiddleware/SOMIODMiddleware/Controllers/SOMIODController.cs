@@ -37,17 +37,31 @@ namespace SOMIODMiddleware.Controllers
                 switch (valor)
                 {
                     case "application":
-                        var applications = applicationController.GetAllApplications(); //mydar para uma função q va buscar so o nome
+                        var applications = applicationController.GetAllApplicationNames();
                         return Ok(applications);
+
+                    case "container":
+                        var containers = containerController.GetAllContainersNames();
+                        return Ok(containers);
+
+                    case "record":
+                        var records = recordController.GetAllRecordsNames();
+                        return Ok(records);
+
+                    case "notification":
+                        var notifications = notificationController.GetAllNotificationsNames();
+                        return Ok(notifications);
+
                     default:
-                        break;
+                        return null;
+
                 }
             }
             else
-                {
-                    var applications = applicationController.GetAllApplications();
-                    return Ok(applications);
-                }
+            {
+                var applications = applicationController.GetAllApplications();
+                return Ok(applications);
+            }
         }
 
         [Route("api/somiod")]

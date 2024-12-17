@@ -12,6 +12,28 @@ namespace SOMIODMiddleware.Controllers
     {
 
         string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SOMIODMiddleware.Properties.Settings.ConnStr"].ConnectionString;
+
+
+        // Obtém o nome de todas as Notifications
+        public List<string> GetAllNotificationsNames()
+        {
+            return DataHelper.GetDataFromDatabase<string>(
+                "SELECT name FROM Notification ORDER BY Id",
+                null
+            );
+        }
+
+
+        // Obtém todas ãs notificacoes
+        public List<Notification> GetAllNotifications()
+        {
+            return DataHelper.GetDataFromDatabase<Notification>(
+                "SELECT name FROM Notification ORDER BY Id",
+                null
+            );
+        }
+
+
         // Cria uma nova notificação
         public int CreateNotification(string name, int parent, string @event, string endpoint)
         {
