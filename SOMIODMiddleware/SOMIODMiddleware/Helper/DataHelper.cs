@@ -121,7 +121,7 @@ namespace SOMIODMiddleware.Helper
                 object propValue = prop.GetValue(dataObject);
 
                 // Define a data atual para propriedades "creation_dt"
-                if (prop.Name == "creation_dt")
+                if (prop.Name == "creation_datetime")
                 {
                     propValue = DateTime.Now;
                 }
