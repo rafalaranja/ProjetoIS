@@ -43,6 +43,15 @@ namespace SOMIODMiddleware.Controllers
             );
         }
 
+        // Obtém as propriedades de uma aplicação
+        public List<Application> GetApplicationPropertiesByName(string name)
+        {
+            return DataHelper.GetDataFromDatabase<Application>(
+                "SELECT * FROM Application WHERE Name = @name",
+                null
+            );
+        }
+
         // Adiciona uma nova aplicação
         public string PostApplications()
         {

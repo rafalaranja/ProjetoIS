@@ -130,16 +130,39 @@ namespace SOMIODMiddleware.Controllers
 
         #region API Containers
 
-        [Route("api/somiod/applications/{application}/containers")]
+        [Route("api/somiod/{application}")]
         [HttpGet]
-        public IHttpActionResult GetContainersByApplication(string application)
+        public IHttpActionResult GetContainers(string application)
         {
-            int applicationId = applicationController.GetApplicationIdByName(application);
-            if (applicationId == 0)
-                return BadRequest("Application does not exist.");
+            System.Net.Http.Headers.HttpRequestHeaders headers = this.Request.Headers;
 
-            var containers = containerController.GetContainersByApplicationId(applicationId);
-            return Ok(containers);
+            if (headers.Contains("somiod-locate"))
+            {  //OK
+                var valor = headers.GetValues("somiod-locate").First();  //build error - not OK
+                switch (valor)
+                {
+                    case "container":
+                        var containers = containerController.GetAllContainersNames();
+                        return Ok(containers);
+
+                    case "record":
+                        var records = recordController.GetAllRecordsNames();
+                        return Ok(records);
+
+                    case "notification":
+                        var notifications = notificationController.GetAllNotificationsNames();
+                        return Ok(notifications);
+
+                    default:
+                        return null;
+
+                }
+            }
+            else
+            {
+                var properties = applicationController.GetApplicationPropertiesByName(application); // vai buscar as propriedades da aplicação especificada
+                return Ok(properties);
+            }
         }
 
         [Route("api/somiod/{applicationName}")]
@@ -209,7 +232,7 @@ namespace SOMIODMiddleware.Controllers
 
         #endregion
 
-        #region API Records (Data)
+        #region API Records
 
         [Route("api/somiod/{applicationName}/{containerName}/records")]
         [HttpPost]
@@ -261,7 +284,7 @@ namespace SOMIODMiddleware.Controllers
 
         #endregion
 
-        #region API Notifications (Subscriptions)
+        #region API Notifications
 
         [Route("api/somiod/{applicationName}/{containerName}/notifications")]
         [HttpPost]
@@ -283,33 +306,11 @@ namespace SOMIODMiddleware.Controllers
             string notificationEvent = nodeNotification["event"].InnerText;
             string endpoint = nodeNotification["endpoint"].InnerText;
 
-            if(notificationController.GetNotificationByNameAndParentId(notificationName, containerId) > 0)
-            {
-                notificationName = notificationName + DateTime.Now.ToString("yyyyMMddHHmmss");
-            }
-
             if (string.IsNullOrWhiteSpace(notificationName) || string.IsNullOrWhiteSpace(notificationEvent) || string.IsNullOrWhiteSpace(endpoint))
                 return BadRequest("Notification name, event, and endpoint are required.");
 
-            notificationController.CreateNotification(notificationName, containerId, notificationEvent, endpoint);
-            return Ok($"Notification created successfully with name: {notificationName}");
-        }
-
-        [Route("api/somiod/{applicationName}/{containerName}/notifications/{notificationName}")]
-        [HttpDelete]
-        public IHttpActionResult DeleteNotification(string applicationName, string containerName, string notificationName)
-        {
-            int applicationId = applicationController.GetApplicationIdByName(applicationName);
-            if (applicationId == 0)
-                return BadRequest("Application does not exist.");
-            int containerId = containerController.GetContainerByNameAndParentId(containerName, applicationId);
-            if (containerId == 0)
-                return BadRequest("Container does not exist.");
-            int notificationId = notificationController.GetNotificationByNameAndParentId(notificationName, containerId);
-            if (notificationId == 0)
-                return BadRequest("Notification does not exist.");
-            notificationController.DeleteNotification(notificationId);
-            return Ok("Notification deleted successfully.");
+            int notificationId = notificationController.CreateNotification(notificationName, containerId, notificationEvent, endpoint);
+            return Ok($"Notification created successfully with ID: {notificationId}");
         }
         #endregion
     }
