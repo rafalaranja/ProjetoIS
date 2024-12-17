@@ -132,6 +132,45 @@ namespace SOMIODMiddleware.Controllers
 
         #region API Containers
 
+        [Route("api/somiod/{applicationName}")]
+        [HttpGet]
+        public IHttpActionResult GetAllContainers()
+        {
+            System.Net.Http.Headers.HttpRequestHeaders headers = this.Request.Headers;
+
+            if (headers.Contains("somiod-locate"))
+            {  //OK
+                var valor = headers.GetValues("somiod-locate").First();  //build error - not OK
+                switch (valor)
+                {
+                    case "application":
+                        var applications = applicationController.GetAllApplicationNames();
+                        return Ok(applications);
+
+                    case "container":
+                        var containers = containerController.GetAllContainersNames();
+                        return Ok(containers);
+
+                    case "record":
+                        var records = recordController.GetAllRecordsNames();
+                        return Ok(records);
+
+                    case "notification":
+                        var notifications = notificationController.GetAllNotificationsNames();
+                        return Ok(notifications);
+
+                    default:
+                        return null;
+
+                }
+            }
+            else
+            {
+                var applications = applicationController.GetAllApplications();
+                return Ok(applications);
+            }
+        }
+
         [Route("api/somiod/applications/{application}/containers")]
         [HttpGet]
         public IHttpActionResult GetContainersByApplication(string application)
