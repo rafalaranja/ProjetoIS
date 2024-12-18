@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web.UI.WebControls.WebParts;
 using System.Xml;
 using SOMIODMiddleware.Helper;
 using SOMIODMiddleware.Models;
@@ -32,11 +33,11 @@ namespace SOMIODMiddleware.Controllers
         }
 
         // Gets all containers for a specific application
-        public List<Container> GetContainersByApplicationId(int applicationId)
+        public List<Container> GetContainersByApplicationId(int parent)
         {
             return DataHelper.GetDataFromDatabase<Container>(
-                "SELECT * FROM Container WHERE ApplicationId = @applicationId",
-                new Container { id = applicationId }
+                "SELECT name FROM Container WHERE parent = @parent",
+                new Container{ parent = parent }
             );
         }
 

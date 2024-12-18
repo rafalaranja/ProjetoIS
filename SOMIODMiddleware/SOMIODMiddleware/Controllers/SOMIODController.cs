@@ -136,13 +136,20 @@ namespace SOMIODMiddleware.Controllers
         {
             System.Net.Http.Headers.HttpRequestHeaders headers = this.Request.Headers;
 
+            //ir buscar o ID da aplicação através do nome providenciado
+            int applicationId = applicationController.GetApplicationIdByName(application);
+            if (applicationId == 0)
+                return BadRequest("Application does not exist.");
+
+
+
             if (headers.Contains("somiod-locate"))
-            {  //OK
-                var valor = headers.GetValues("somiod-locate").First();  //build error - not OK
+            {
+                var valor = headers.GetValues("somiod-locate").First();
                 switch (valor)
                 {
                     case "container":
-                        var containers = containerController.GetAllContainersNames();
+                        var containers = containerController.GetContainersByApplicationId(applicationId);
                         return Ok(containers);
 
                     case "record":
