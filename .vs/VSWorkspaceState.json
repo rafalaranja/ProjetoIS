@@ -6,11 +6,8 @@
     "\\SOMIODMiddleware\\SOMIODMiddleware\\Controllers",
     "\\SOMIODMiddleware\\SOMIODMiddleware\\Helper",
     "\\SOMIODMiddleware\\SOMIODMiddleware\\Views",
-    "\\SOMIODMiddleware\\SOMIODMiddleware\\Views\\Application",
-    "\\SOMIODMiddleware\\SOMIODMiddleware\\Views\\Container",
-    "\\SOMIODMiddleware\\SOMIODMiddleware\\Views\\Default",
     "\\SOMIODMiddleware\\SOMIODMiddleware\\Views\\Shared"
   ],
-  "SelectedNode": "\\SOMIODMiddleware\\SOMIODMiddleware\\Controllers\\ContainerController.cs",
+  "SelectedNode": "\\SOMIODMiddleware\\SOMIODMiddleware\\Controllers\\NotificationController.cs",
   "PreviewInSolutionExplorer": false
 }

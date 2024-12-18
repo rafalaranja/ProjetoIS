@@ -263,9 +263,9 @@ namespace SOMIODMiddleware.Controllers
             return Ok($"Record created successfully with name: {recordName}");
         }
 
-        [Route("api/somiod/{applicationName}/{containerName}/records/{recordId}")]
+        [Route("api/somiod/{applicationName}/{containerName}/records/{recordName}")]
         [HttpDelete]
-        public IHttpActionResult DeleteRecord(string applicationName, string containerName, int recordId)
+        public IHttpActionResult DeleteRecord(string applicationName, string containerName, string recordName)
         {
             int applicationId = applicationController.GetApplicationIdByName(applicationName);
             if (applicationId == 0)
@@ -275,8 +275,12 @@ namespace SOMIODMiddleware.Controllers
             if (containerId == 0)
                 return BadRequest("Container does not exist.");
 
+            int recordId = recordController.GetRecordByContentAndParentId(recordName, containerId);
+            if (recordId == 0)
+                return BadRequest("Record does not exist.");
+
             recordController.DeleteRecord(recordId);
-            connHelper.EmitMessageToTopic($"{applicationName}/{containerName}/deletion", $"Deleted record ID: {recordId}");
+            connHelper.EmitMessageToTopic($"{applicationName}/{containerName}/deletion", $"Deleted record name: {recordName}");
 
             return Ok("Record deleted successfully.");
         }
@@ -306,12 +310,35 @@ namespace SOMIODMiddleware.Controllers
             string notificationEvent = nodeNotification["event"].InnerText;
             string endpoint = nodeNotification["endpoint"].InnerText;
 
+            if (notificationController.GetNotificationByNameAndParentId(notificationName, containerId) > 0)
+            {
+                notificationName = notificationName + DateTime.Now.ToString("yyyyMMddHHmmss");
+            }
+
             if (string.IsNullOrWhiteSpace(notificationName) || string.IsNullOrWhiteSpace(notificationEvent) || string.IsNullOrWhiteSpace(endpoint))
                 return BadRequest("Notification name, event, and endpoint are required.");
 
-            int notificationId = notificationController.CreateNotification(notificationName, containerId, notificationEvent, endpoint);
-            return Ok($"Notification created successfully with ID: {notificationId}");
+            notificationController.CreateNotification(notificationName, containerId, notificationEvent, endpoint);
+            return Ok($"Notification created successfully with name: {notificationName}");
         }
+
+        [Route("api/somiod/{applicationName}/{containerName}/notifications/{notificationName}")]
+        [HttpDelete]
+        public IHttpActionResult DeleteNotification(string applicationName, string containerName, string notificationName)
+        {
+            int applicationId = applicationController.GetApplicationIdByName(applicationName);
+            if (applicationId == 0)
+                return BadRequest("Application does not exist.");
+            int containerId = containerController.GetContainerByNameAndParentId(containerName, applicationId);
+            if (containerId == 0)
+                return BadRequest("Container does not exist.");
+            int notificationId = notificationController.GetNotificationByNameAndParentId(notificationName, containerId);
+            if (notificationId == 0)
+                return BadRequest("Notification does not exist.");
+            notificationController.DeleteNotification(notificationId);
+            return Ok("Notification deleted successfully.");
+        }
+
         #endregion
     }
 
