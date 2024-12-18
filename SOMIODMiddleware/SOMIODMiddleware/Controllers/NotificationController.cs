@@ -103,9 +103,9 @@ namespace SOMIODMiddleware.Controllers
             return notificationList;
         }
 
-        public int GetNotificationByNameAndParentId(String notification, int applicationId)
+        public int GetNotificationNameByParentId(String notificationName, int parentId)
         {
-            List<Notification> notificationList = DataHelper.GetDataFromDatabase<Notification>("SELECT * FROM Notification WHERE Parent = @parent AND Name = @name", new Notification { parent = applicationId, name = notification });
+            List<Notification> notificationList = DataHelper.GetDataFromDatabase<Notification>("SELECT * FROM Notification WHERE Parent = @parent AND Name = @name", new Notification { parent = parentId, name = notificationName });
             int notificationById = 0;
             if (notificationList.Count > 0)
             {
