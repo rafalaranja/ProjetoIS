@@ -48,7 +48,7 @@ namespace SOMIODMiddleware.Controllers
         {
             return DataHelper.GetDataFromDatabase<Application>(
                 "SELECT * FROM Application WHERE Name = @name",
-                null
+                new Application { name = name }
             );
         }
 
