@@ -25,7 +25,7 @@ namespace SOMIODMiddleware.Controllers
 
         #region API Applications
 
-        [Route("api/somiod")]
+        [Route("api/somiod")] //locate das applications
         [HttpGet]
         public IHttpActionResult GetAllApplications()
         {
@@ -106,9 +106,10 @@ namespace SOMIODMiddleware.Controllers
             {
                 return BadRequest("Application name is required.");
             }
-            if (!applicationController.IsApplicationNameAvailable(applicationName))
+            if (!applicationController.IsApplicationNameAvailable(nameNode.InnerText))
                 return BadRequest("Application name is already taken.");
-            applicationController.PutApplication(applicationName, applicationId);
+
+            applicationController.PutApplication(nameNode.InnerText, applicationId);
             return Ok("Application name updated successfully.");
         }
 
@@ -117,6 +118,7 @@ namespace SOMIODMiddleware.Controllers
         public IHttpActionResult DeleteApplication(string applicationName)
         {
             int applicationId = applicationController.GetApplicationIdByName(applicationName);
+            //return Ok(applicationId); para testar o q o burro do rafa fudeu
             if (applicationId == 0)
                 return BadRequest("Application does not exist.");
 
