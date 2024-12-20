@@ -126,5 +126,17 @@ namespace SOMIODMiddleware.Controllers
             return notificationById;
         }
 
+        public List<String> GetNotificationsByContainerId(int containerId)
+        {
+            return DataHelper.GetDataFromDatabase<String>(
+                $"SELECT Notification.name " +
+                $"FROM Notification " +
+                $"JOIN Container ON Notification.parent = Container.id " +
+                $"WHERE Container.id = {containerId}", // Insere o valor diretamente
+                 null
+
+            );
+        }
+
     }
 }

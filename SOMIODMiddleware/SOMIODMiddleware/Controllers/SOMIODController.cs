@@ -275,11 +275,11 @@ namespace SOMIODMiddleware.Controllers
                 switch (valor)
                 {
                     case "record":
-                        var records = recordController.GetRecordsByApplicationId(applicationId);
+                        var records = recordController.GetRecordsByContainerId(containerId);
                         return Ok(records);
 
                     case "notification":
-                        var notifications = notificationController.GetNotificationsByApplicationId(applicationId);
+                        var notifications = notificationController.GetNotificationsByContainerId(containerId);
                         return Ok(notifications);
 
                     default:
@@ -348,7 +348,49 @@ namespace SOMIODMiddleware.Controllers
 
         #endregion
 
-         #region API Notifications
+        #region API Notifications
+
+        [Route("api/somiod/{applicationName}/{containerName}/notification")]
+        [HttpGet]
+        public IHttpActionResult GetNotifications(string applicationName, string containerName)
+        {
+            System.Net.Http.Headers.HttpRequestHeaders headers = this.Request.Headers;
+
+            //ir buscar o ID da aplicação através do nome providenciado
+            int applicationId = applicationController.GetApplicationIdByName(applicationName);
+            //ir buscar o ID do container através do nome providenciado
+            int containerId = containerController.GetContainerIdByName(containerName);
+
+            if (applicationId == 0)
+                return BadRequest("Application does not exist.");
+
+            if (containerId == 0)
+                return BadRequest("Container does not exist.");
+
+            if (headers.Contains("somiod-locate"))
+            {
+                var valor = headers.GetValues("somiod-locate").First();
+                switch (valor)
+                {
+                    case "record":
+                        var records = recordController.GetRecordsByContainerId(containerId);
+                        return Ok(records);
+
+                    case "notification":
+                        var notifications = notificationController.GetNotificationsByContainerId(containerId);
+                        return Ok(notifications);
+
+                    default:
+                        return null;
+
+                }
+            }
+            else
+            {
+                var properties = containerController.GetContainerByName(containerName); // vai buscar as propriedades da record especificada
+                return Ok(properties);
+            }
+        }
 
         [Route("api/somiod/{applicationName}/{containerName}/notification")]
         [HttpPost]

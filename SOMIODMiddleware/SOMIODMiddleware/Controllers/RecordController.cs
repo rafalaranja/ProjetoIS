@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls.WebParts;
 using SOMIODMiddleware.Helper;
 using SOMIODMiddleware.Models;
 
@@ -76,11 +77,15 @@ namespace SOMIODMiddleware.Controllers
         }
 
         // Obtém todos os registos de um container
-        public List<Record> GetRecordsByContainerId(int containerId)
+        public List<String> GetRecordsByContainerId(int containerId)
         {
-            return DataHelper.GetDataFromDatabase<Record>(
-                "SELECT * FROM Record WHERE Parent = @parent",
-                new Record { parent = containerId }
+            return DataHelper.GetDataFromDatabase<String>(
+                $"SELECT Record.name " +
+                $"FROM Record " +
+                $"JOIN Container ON Record.parent = Container.id " +
+                $"WHERE Container.id = {containerId}", // Insere o valor diretamente
+                 null
+
             );
         }
 
