@@ -132,14 +132,14 @@ namespace SOMIODMiddleware.Controllers
 
         #region API Containers
 
-        [Route("api/somiod/{application}")]
+        [Route("api/somiod/{applicationName}")]
         [HttpGet]
-        public IHttpActionResult GetContainers(string application)
+        public IHttpActionResult GetContainers(string applicationName)
         {
             System.Net.Http.Headers.HttpRequestHeaders headers = this.Request.Headers;
 
             //ir buscar o ID da aplicação através do nome providenciado
-            int applicationId = applicationController.GetApplicationIdByName(application);
+            int applicationId = applicationController.GetApplicationIdByName(applicationName);
 
             //return Ok(applicationId);
 
@@ -170,7 +170,7 @@ namespace SOMIODMiddleware.Controllers
             }
             else
             {
-                var properties = applicationController.GetApplicationPropertiesByName(application); // vai buscar as propriedades da aplicação especificada
+                var properties = applicationController.GetApplicationPropertiesByName(applicationName); // vai buscar as propriedades da aplicação especificada
                 return Ok(properties);
             }
         }
