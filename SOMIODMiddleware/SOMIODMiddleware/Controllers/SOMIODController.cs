@@ -317,7 +317,7 @@ namespace SOMIODMiddleware.Controllers
             {
                 recordName = recordName + DateTime.Now.ToString("yyyyMMddHHmmss");
             }
-            recordController.CreateRecord(recordName, containerId);
+            recordController.CreateRecord(recordName, containerId); //comment
             connHelper.EmitMessageToTopic($"{applicationName}/{containerName}/creation", recordName);
 
             return Ok($"Record created successfully with name: {recordName}");
