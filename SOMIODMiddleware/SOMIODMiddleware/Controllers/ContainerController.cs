@@ -129,7 +129,7 @@ namespace SOMIODMiddleware.Controllers
         public int CreateContainer(string name, int applicationId)
         {
             return DataHelper.TransactWithDatabase<Container>(
-                "INSERT INTO Container (Name, ApplicationId) OUTPUT INSERTED.ID VALUES (@name, @applicationId)",
+                "INSERT INTO Container (name, parent) OUTPUT INSERTED.ID VALUES (@name, @id)",
                 new Container { name = name, id = applicationId }
             );
         }

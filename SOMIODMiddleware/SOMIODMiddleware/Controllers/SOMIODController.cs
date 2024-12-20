@@ -204,17 +204,25 @@ namespace SOMIODMiddleware.Controllers
         public IHttpActionResult PutContainer(string applicationName, string containerName)
         {
             int applicationId = applicationController.GetApplicationIdByName(applicationName);
+
             if (applicationId == 0)
                 return BadRequest("Application does not exist.");
+
             int containerId = containerController.GetContainerByNameAndParentId(containerName, applicationId);
+
             if (containerId == 0)
                 return BadRequest("Container does not exist.");
+
             XmlNode nodeContainer = controllerHelper.BuildXmlNodeFromRequest("Container");
+
             if (!nodeContainer.HasChildNodes)
-                return BadRequest("Empty request body.");
+                return BadRequest("Empty request b ody.");
+
             string newContainerName = nodeContainer["name"].InnerText;
+
             if (string.IsNullOrWhiteSpace(newContainerName))
                 return BadRequest("Container name is required.");
+
             if (containerController.GetContainerByNameAndParentId(newContainerName, applicationId) > 0)
             {
                 return BadRequest("Container name is already taken.");
