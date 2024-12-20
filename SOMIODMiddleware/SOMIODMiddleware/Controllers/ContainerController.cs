@@ -62,6 +62,15 @@ namespace SOMIODMiddleware.Controllers
             );
         }
 
+        // Obtém as propriedades de um container
+        public List<Container> GetContainerPropertiesByName(string name)
+        {
+            return DataHelper.GetDataFromDatabase<Container>(
+                "SELECT * FROM Container WHERE Name = @name",
+                new Container { name = name }
+            );
+        }
+
         // Gets a specific container by its name
         public int GetContainerIdByName(string containerName)
         {

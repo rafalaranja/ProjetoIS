@@ -254,27 +254,26 @@ namespace SOMIODMiddleware.Controllers
 
         [Route("api/somiod/{applicationName}/{containerName}/record")]
         [HttpGet]
-        public IHttpActionResult GetRecords(string application, string container)
+        public IHttpActionResult GetRecords(string applicationName, string containerName)
         {
             System.Net.Http.Headers.HttpRequestHeaders headers = this.Request.Headers;
 
             //ir buscar o ID da aplicação através do nome providenciado
-            int applicationId = applicationController.GetApplicationIdByName(application);
+            int applicationId = applicationController.GetApplicationIdByName(applicationName);
             //ir buscar o ID do container através do nome providenciado
-            int containerId = containerController.GetContainerIdByName(application);
+            int containerId = containerController.GetContainerIdByName(containerName);
 
             if (applicationId == 0)
                 return BadRequest("Application does not exist.");
+
+            if (containerId == 0)
+                return BadRequest("Container does not exist.");
 
             if (headers.Contains("somiod-locate"))
             {
                 var valor = headers.GetValues("somiod-locate").First();
                 switch (valor)
                 {
-                    case "container":
-                        var containers = containerController.GetContainersByApplicationId(applicationId);
-                        return Ok(containers);
-
                     case "record":
                         var records = recordController.GetRecordsByApplicationId(applicationId);
                         return Ok(records);
@@ -290,7 +289,7 @@ namespace SOMIODMiddleware.Controllers
             }
             else
             {
-                var properties = applicationController.GetApplicationPropertiesByName(application); // vai buscar as propriedades da aplicação especificada
+                var properties = containerController.GetContainerByName(containerName); // vai buscar as propriedades da record especificada
                 return Ok(properties);
             }
         }
@@ -349,7 +348,7 @@ namespace SOMIODMiddleware.Controllers
 
         #endregion
 
-        #region API Notifications
+         #region API Notifications
 
         [Route("api/somiod/{applicationName}/{containerName}/notification")]
         [HttpPost]
