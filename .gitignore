@@ -363,3 +363,10 @@ MigrationBackup/
 FodyWeavers.xsd
 /App_Data/BD_PROJETO.mdf
 /App_Data/BD_PROJETO_log.ldf
+
+
+#
+SOMIODMiddleware\.vs
+SOMIODMiddleware\SOMIODMiddleware\App_Data
+SOMIODMiddleware\SOMIODMiddleware\bin
+SOMIODMiddleware\SOMIODMiddleware\obj\Debug
