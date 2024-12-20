@@ -52,6 +52,29 @@ namespace SOMIODMiddleware.Controllers
 
             return containers.Count > 0 ? containers[0] : null;
         }
+
+        // Gets a specific container by its name
+        public List<Container> GetContainerByName(string name)
+        {
+            return DataHelper.GetDataFromDatabase<Container>(
+                "SELECT * FROM Container WHERE Name = @name",
+                new Container { name = name }
+            );
+        }
+
+        // Gets a specific container by its name
+        public int GetContainerIdByName(string containerName)
+        {
+            
+            var containers = GetContainerByName(containerName);
+            if (containers.Count == 0)
+            {
+                return 0; // Retorna 0 se a aplicação não existir
+            }
+
+            return containers[0]?.id ?? 0; // Retorna o ID se existir
+        }
+
         public int GetContainerByNameAndParentId(String container, int applicationId)
         {
             List<Container> containerList = DataHelper.GetDataFromDatabase<Container>("SELECT * FROM Container WHERE Parent = @parent AND Name = @name", new Container { parent = applicationId, name = container });

@@ -252,7 +252,50 @@ namespace SOMIODMiddleware.Controllers
 
         #region API Records
 
-        [Route("api/somiod/{applicationName}/{containerName}/records")]
+        [Route("api/somiod/{applicationName}/{containerName}/record")]
+        [HttpGet]
+        public IHttpActionResult GetRecords(string application, string container)
+        {
+            System.Net.Http.Headers.HttpRequestHeaders headers = this.Request.Headers;
+
+            //ir buscar o ID da aplicação através do nome providenciado
+            int applicationId = applicationController.GetApplicationIdByName(application);
+            //ir buscar o ID do container através do nome providenciado
+            int containerId = containerController.GetContainerIdByName(application);
+
+            if (applicationId == 0)
+                return BadRequest("Application does not exist.");
+
+            if (headers.Contains("somiod-locate"))
+            {
+                var valor = headers.GetValues("somiod-locate").First();
+                switch (valor)
+                {
+                    case "container":
+                        var containers = containerController.GetContainersByApplicationId(applicationId);
+                        return Ok(containers);
+
+                    case "record":
+                        var records = recordController.GetRecordsByApplicationId(applicationId);
+                        return Ok(records);
+
+                    case "notification":
+                        var notifications = notificationController.GetNotificationsByApplicationId(applicationId);
+                        return Ok(notifications);
+
+                    default:
+                        return null;
+
+                }
+            }
+            else
+            {
+                var properties = applicationController.GetApplicationPropertiesByName(application); // vai buscar as propriedades da aplicação especificada
+                return Ok(properties);
+            }
+        }
+
+        [Route("api/somiod/{applicationName}/{containerName}/record")]
         [HttpPost]
         public IHttpActionResult PostRecord(string applicationName, string containerName)
         {
@@ -281,7 +324,7 @@ namespace SOMIODMiddleware.Controllers
             return Ok($"Record created successfully with name: {recordName}");
         }
 
-        [Route("api/somiod/{applicationName}/{containerName}/records/{recordName}")]
+        [Route("api/somiod/{applicationName}/{containerName}/record/{recordName}")]
         [HttpDelete]
         public IHttpActionResult DeleteRecord(string applicationName, string containerName, string recordName)
         {
@@ -308,7 +351,7 @@ namespace SOMIODMiddleware.Controllers
 
         #region API Notifications
 
-        [Route("api/somiod/{applicationName}/{containerName}/notifications")]
+        [Route("api/somiod/{applicationName}/{containerName}/notification")]
         [HttpPost]
         public IHttpActionResult PostNotification(string applicationName, string containerName)
         {
@@ -340,7 +383,7 @@ namespace SOMIODMiddleware.Controllers
             return Ok($"Notification created successfully with name: {notificationName}");
         }
 
-        [Route("api/somiod/{applicationName}/{containerName}/notifications/{notificationName}")]
+        [Route("api/somiod/{applicationName}/{containerName}/notification/{notificationName}")]
         [HttpDelete]
         public IHttpActionResult DeleteNotification(string applicationName, string containerName, string notificationName)
         {
