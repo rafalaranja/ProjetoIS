@@ -31,11 +31,13 @@ namespace MiddlwareTester
 
         }
 
+        #region Application Methods
+
         private void button1_Click(object sender, EventArgs e) //butao do Get/Locate App
         {
             RestRequest request = new RestRequest("api/somiod", Method.Get);
 
-            if (comboBox1.SelectedIndex != -1) //caso tenha selecionado um somiod-locate
+            if (comboBox1.SelectedIndex != -1 && comboBox1.Text != "") //caso tenha selecionado um somiod-locate
             {
                 switch (comboBox1.SelectedIndex)
                 {
@@ -64,7 +66,6 @@ namespace MiddlwareTester
                 {
                     richTextBox1.AppendText(name + "\n");
                 }
-                MessageBox.Show("Request Done!");
 
                 return;
             }
@@ -79,7 +80,6 @@ namespace MiddlwareTester
             {
                 richTextBox1.AppendText($"Id: {Application.id} : {Application.name} \t {Application.creation_datetime} \n");
             }
-            MessageBox.Show("Request Done!");
 
             return;
         }
@@ -113,8 +113,61 @@ namespace MiddlwareTester
                 richTextBox1.AppendText($"Error: {response.StatusDescription}");
             }
 
-            MessageBox.Show("Post done!");
-
         }
+
+        private void btnPutApp_Click(object sender, EventArgs e)
+        {
+            RestRequest request = new RestRequest("api/somiod/" + textPut1App.Text, Method.Put);
+
+            request.RequestFormat = DataFormat.Xml;
+
+            request.AddBody("<Application>\r\n    <name>" + textPut2App.Text + "</name>\r\n</Application>");
+
+            var response = client.Execute(request);
+
+            richTextBox1.Clear();
+
+            // Verifica se a requisição foi bem-sucedida
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                // Adiciona o conteúdo da resposta no richTextBox
+                richTextBox1.AppendText(response.Content);
+            }
+            else
+            {
+                // Exibe a mensagem de erro no richTextBox
+                richTextBox1.AppendText($"Error: {response.StatusDescription}");
+            }
+        }
+
+        private void btnDeleteApp_Click(object sender, EventArgs e)
+        {
+            RestRequest request = new RestRequest("api/somiod/" + textDeleteApp.Text, Method.Delete);
+
+            request.RequestFormat = DataFormat.Xml;
+
+            var response = client.Execute(request);
+
+            richTextBox1.Clear();
+
+            // Verifica se a requisição foi bem-sucedida
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                // Adiciona o conteúdo da resposta no richTextBox
+                richTextBox1.AppendText(response.Content);
+            }
+            else
+            {
+                // Exibe a mensagem de erro no richTextBox
+                richTextBox1.AppendText($"Error: {response.StatusDescription}");
+            }
+        }
+        #endregion
+
+        #region Container Methods
+
+
+
+        #endregion
     }
 }

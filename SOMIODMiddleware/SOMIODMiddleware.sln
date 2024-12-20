@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOMIODMiddleware", "SOMIODMiddleware\SOMIODMiddleware.csproj", "{E7091A65-0CDB-4729-A7E6-B078055765AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddlwareTester", "MiddlwareTester\MiddlwareTester.csproj", "{6B6AFF1F-3D28-402E-86B5-DB50A57FBA37}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E7091A65-0CDB-4729-A7E6-B078055765AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7091A65-0CDB-4729-A7E6-B078055765AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7091A65-0CDB-4729-A7E6-B078055765AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B6AFF1F-3D28-402E-86B5-DB50A57FBA37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B6AFF1F-3D28-402E-86B5-DB50A57FBA37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B6AFF1F-3D28-402E-86B5-DB50A57FBA37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B6AFF1F-3D28-402E-86B5-DB50A57FBA37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
