@@ -118,7 +118,7 @@ namespace SOMIODMiddleware.Controllers
         public IHttpActionResult DeleteApplication(string applicationName)
         {
             int applicationId = applicationController.GetApplicationIdByName(applicationName);
-            //return Ok(applicationId); para testar o q o burro do rafa fudeu
+            //return Ok(applicationId);
             if (applicationId == 0)
                 return BadRequest("Application does not exist.");
 
@@ -140,10 +140,11 @@ namespace SOMIODMiddleware.Controllers
 
             //ir buscar o ID da aplicação através do nome providenciado
             int applicationId = applicationController.GetApplicationIdByName(application);
+
+            //return Ok(applicationId);
+
             if (applicationId == 0)
                 return BadRequest("Application does not exist.");
-
-
 
             if (headers.Contains("somiod-locate"))
             {
@@ -155,11 +156,11 @@ namespace SOMIODMiddleware.Controllers
                         return Ok(containers);
 
                     case "record":
-                        var records = recordController.GetAllRecordsNames();
+                        var records = recordController.GetRecordsByApplicationId(applicationId);
                         return Ok(records);
 
                     case "notification":
-                        var notifications = notificationController.GetAllNotificationsNames();
+                        var notifications = notificationController.GetNotificationsByApplicationId(applicationId);
                         return Ok(notifications);
 
                     default:

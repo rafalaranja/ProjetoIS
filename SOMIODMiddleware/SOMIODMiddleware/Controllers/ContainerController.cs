@@ -33,11 +33,11 @@ namespace SOMIODMiddleware.Controllers
         }
 
         // Gets all containers for a specific application
-        public List<Container> GetContainersByApplicationId(int parent)
+        public List<String> GetContainersByApplicationId(int parent)
         {
-            return DataHelper.GetDataFromDatabase<Container>(
-                "SELECT name FROM Container WHERE parent = @parent",
-                new Container{ parent = parent }
+            return DataHelper.GetDataFromDatabase<String>(
+                $"SELECT name FROM Container WHERE parent = {parent}", // Insere o valor diretamente
+                 null
             );
         }
 

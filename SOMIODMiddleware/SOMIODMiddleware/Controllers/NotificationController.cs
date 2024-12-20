@@ -23,6 +23,18 @@ namespace SOMIODMiddleware.Controllers
             );
         }
 
+        public List<String> GetNotificationsByApplicationId(int parent)
+        {
+            return DataHelper.GetDataFromDatabase<String>(
+                $"SELECT Notification.name " +
+                $"FROM Notification " +
+                $"JOIN Container ON Notification.parent = Container.id " +
+                $"WHERE Container.parent = {parent}", // Insere o valor diretamente
+                 null
+
+            );
+        }
+
 
         // Obtém todas ãs notificacoes
         public List<Notification> GetAllNotifications()

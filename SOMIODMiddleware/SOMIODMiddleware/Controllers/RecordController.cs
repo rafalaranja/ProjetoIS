@@ -22,6 +22,18 @@ namespace SOMIODMiddleware.Controllers
             );
         }
 
+        public List<String> GetRecordsByApplicationId(int parent)
+        {
+            return DataHelper.GetDataFromDatabase<String>(
+                $"SELECT Record.name " +
+                $"FROM Record " +
+                $"JOIN Container ON Record.parent = Container.id " +
+                $"WHERE Container.parent = {parent}", // Insere o valor diretamente
+                 null
+
+            );
+        }
+
         // Obtém todas os records
         public List<Record> GetAllRecords()
         {
