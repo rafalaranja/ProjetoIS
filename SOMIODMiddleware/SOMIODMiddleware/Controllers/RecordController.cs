@@ -89,6 +89,27 @@ namespace SOMIODMiddleware.Controllers
             );
         }
 
+        public List<Record> GetRecordByName(string name)
+        {
+            return DataHelper.GetDataFromDatabase<Record>(
+                "SELECT * FROM Record WHERE Name = @name",
+                new Record { name = name }
+            );
+        }
+
+        // Gets a specific record by its name
+        public int GetRecordIdByName(string recordName)
+        {
+
+            var record = GetRecordByName(recordName);
+            if (record.Count == 0)
+            {
+                return 0; // Retorna 0 se a aplicação não existir
+            }
+
+            return record[0]?.id ?? 0; // Retorna o ID se existir
+        }
+
         // Verifica se um registo existe pelo ID
         public bool DoesRecordExist(int recordId)
         {
@@ -106,6 +127,7 @@ namespace SOMIODMiddleware.Controllers
             }
             return recordById;
         }
+
 
     }
 }

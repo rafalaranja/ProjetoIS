@@ -45,6 +45,27 @@ namespace SOMIODMiddleware.Controllers
             );
         }
 
+        public List<Notification> GetNotificationByName(string name)
+        {
+            return DataHelper.GetDataFromDatabase<Notification>(
+                "SELECT * FROM Notification WHERE Name = @name",
+                new Notification { name = name }
+            );
+        }
+
+        // Gets a specific notification by its name
+        public int GetNotificationIdByName(string notificationName)
+        {
+
+            var record = GetNotificationByName(notificationName);
+            if (record.Count == 0)
+            {
+                return 0; // Retorna 0 se a aplicação não existir
+            }
+
+            return record[0]?.id ?? 0; // Retorna o ID se existir
+        }
+
 
         // Cria uma nova notificação
         public int CreateNotification(string name, int parent, string @event, string endpoint)

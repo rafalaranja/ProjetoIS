@@ -23,9 +23,12 @@ namespace SOMIODMiddleware.Controllers
         private readonly ControllerHelper controllerHelper = new ControllerHelper();
         private readonly ConnHelper connHelper = new ConnHelper();
 
-        #region API Applications
 
-        [Route("api/somiod")] //locate das applications
+
+        #region GET Operations
+
+        //GET ALL APPLICATIONS + LOCATE
+        [Route("api/somiod")]
         [HttpGet]
         public IHttpActionResult GetAllApplications()
         {
@@ -64,6 +67,154 @@ namespace SOMIODMiddleware.Controllers
             }
         }
 
+
+        //GET APLICATION + LOCATE
+        [Route("api/somiod/{applicationName}")]
+        [HttpGet]
+        public IHttpActionResult GetApplication(string applicationName)
+        {
+            System.Net.Http.Headers.HttpRequestHeaders headers = this.Request.Headers;
+
+            //ir buscar o ID da aplicação através do nome providenciado
+            int applicationId = applicationController.GetApplicationIdByName(applicationName);
+
+            //return Ok(applicationId);
+
+            if (applicationId == 0)
+                return BadRequest("Application does not exist.");
+
+            if (headers.Contains("somiod-locate"))
+            {
+                var valor = headers.GetValues("somiod-locate").First();
+                switch (valor)
+                {
+                    case "container":
+                        var containers = containerController.GetContainersByApplicationId(applicationId);
+                        return Ok(containers);
+
+                    case "record":
+                        var records = recordController.GetRecordsByApplicationId(applicationId);
+                        return Ok(records);
+
+                    case "notification":
+                        var notifications = notificationController.GetNotificationsByApplicationId(applicationId);
+                        return Ok(notifications);
+
+                    default:
+                        return null;
+
+                }
+            }
+            else
+            {
+                var properties = applicationController.GetApplicationPropertiesByName(applicationName); // vai buscar as propriedades da aplicação especificada
+                return Ok(properties);
+            }
+        }
+
+
+        //GET CONTAINER + LOCATE
+        [Route("api/somiod/{applicationName}/{containerName}")]
+        [HttpGet]
+        public IHttpActionResult GetContainer(string applicationName, string containerName)
+        {
+            System.Net.Http.Headers.HttpRequestHeaders headers = this.Request.Headers;
+
+            //ir buscar o ID da aplicação através do nome providenciado
+            int applicationId = applicationController.GetApplicationIdByName(applicationName);
+            //ir buscar o ID do container através do nome providenciado
+            int containerId = containerController.GetContainerIdByName(containerName);
+
+            if (applicationId == 0)
+                return BadRequest("Application does not exist.");
+
+            if (containerId == 0)
+                return BadRequest("Container does not exist.");
+
+            if (headers.Contains("somiod-locate"))
+            {
+                var valor = headers.GetValues("somiod-locate").First();
+                switch (valor)
+                {
+                    case "record":
+                        var records = recordController.GetRecordsByContainerId(containerId);
+                        return Ok(records);
+
+                    case "notification":
+                        var notifications = notificationController.GetNotificationsByContainerId(containerId);
+                        return Ok(notifications);
+
+                    default:
+                        return null;
+
+                }
+            }
+            else
+            {
+                var properties = containerController.GetContainerByName(containerName); // vai buscar as propriedades da record especificada
+                return Ok(properties);
+            }
+        }
+
+
+        //GET RECORD
+        [Route("api/somiod/{applicationName}/{containerName}/record/{recordName}")]
+        [HttpGet]
+        public IHttpActionResult GetRecord(string applicationName, string containerName,string recordName)
+        {
+            System.Net.Http.Headers.HttpRequestHeaders headers = this.Request.Headers;
+
+            //ir buscar o ID da aplicação através do nome providenciado
+            int applicationId = applicationController.GetApplicationIdByName(applicationName);
+            //ir buscar o ID do container através do nome providenciado
+            int containerId = containerController.GetContainerIdByName(containerName);
+            //ir buscar o ID do container através do nome providenciado
+            int recordId = recordController.GetRecordIdByName(recordName);
+
+            if (applicationId == 0)
+                return BadRequest("Application does not exist.");
+
+            if (containerId == 0)
+                return BadRequest("Container does not exist.");
+
+            if (recordId == 0)
+                return BadRequest("Record does not exist.");
+
+            var properties = recordController.GetRecordByName(recordName); // vai buscar as propriedades da record especificada
+            return Ok(properties);
+        }
+
+        //GET NOTIFICATION
+        [Route("api/somiod/{applicationName}/{containerName}/notif/{notificationName}")]
+        [HttpGet]
+        public IHttpActionResult GetNotification(string applicationName, string containerName, string notificationName)
+        {
+            System.Net.Http.Headers.HttpRequestHeaders headers = this.Request.Headers;
+
+            //ir buscar o ID da aplicação através do nome providenciado
+            int applicationId = applicationController.GetApplicationIdByName(applicationName);
+            //ir buscar o ID do container através do nome providenciado
+            int containerId = containerController.GetContainerIdByName(containerName);
+            //ir buscar o ID do container através do nome providenciado
+            int recordId = notificationController.GetNotificationIdByName(notificationName);
+
+            if (applicationId == 0)
+                return BadRequest("Application does not exist.");
+
+            if (containerId == 0)
+                return BadRequest("Container does not exist.");
+
+            if (recordId == 0)
+                return BadRequest("Record does not exist.");
+
+            var properties = notificationController.GetNotificationByName(notificationName); // vai buscar as propriedades da record especificada
+            return Ok(properties);
+        }
+
+
+        #endregion
+
+        #region API Applications
 
         [Route("api/somiod")]
         [HttpPost]
@@ -131,49 +282,6 @@ namespace SOMIODMiddleware.Controllers
         #endregion
 
         #region API Containers
-
-        [Route("api/somiod/{applicationName}")]
-        [HttpGet]
-        public IHttpActionResult GetContainers(string applicationName)
-        {
-            System.Net.Http.Headers.HttpRequestHeaders headers = this.Request.Headers;
-
-            //ir buscar o ID da aplicação através do nome providenciado
-            int applicationId = applicationController.GetApplicationIdByName(applicationName);
-
-            //return Ok(applicationId);
-
-            if (applicationId == 0)
-                return BadRequest("Application does not exist.");
-
-            if (headers.Contains("somiod-locate"))
-            {
-                var valor = headers.GetValues("somiod-locate").First();
-                switch (valor)
-                {
-                    case "container":
-                        var containers = containerController.GetContainersByApplicationId(applicationId);
-                        return Ok(containers);
-
-                    case "record":
-                        var records = recordController.GetRecordsByApplicationId(applicationId);
-                        return Ok(records);
-
-                    case "notification":
-                        var notifications = notificationController.GetNotificationsByApplicationId(applicationId);
-                        return Ok(notifications);
-
-                    default:
-                        return null;
-
-                }
-            }
-            else
-            {
-                var properties = applicationController.GetApplicationPropertiesByName(applicationName); // vai buscar as propriedades da aplicação especificada
-                return Ok(properties);
-            }
-        }
 
         [Route("api/somiod/{applicationName}")]
         [HttpPost]
@@ -253,48 +361,6 @@ namespace SOMIODMiddleware.Controllers
         #region API Records
 
         [Route("api/somiod/{applicationName}/{containerName}")]
-        [HttpGet]
-        public IHttpActionResult GetRecords(string applicationName, string containerName)
-        {
-            System.Net.Http.Headers.HttpRequestHeaders headers = this.Request.Headers;
-
-            //ir buscar o ID da aplicação através do nome providenciado
-            int applicationId = applicationController.GetApplicationIdByName(applicationName);
-            //ir buscar o ID do container através do nome providenciado
-            int containerId = containerController.GetContainerIdByName(containerName);
-
-            if (applicationId == 0)
-                return BadRequest("Application does not exist.");
-
-            if (containerId == 0)
-                return BadRequest("Container does not exist.");
-
-            if (headers.Contains("somiod-locate"))
-            {
-                var valor = headers.GetValues("somiod-locate").First();
-                switch (valor)
-                {
-                    case "record":
-                        var records = recordController.GetRecordsByContainerId(containerId);
-                        return Ok(records);
-
-                    case "notification":
-                        var notifications = notificationController.GetNotificationsByContainerId(containerId);
-                        return Ok(notifications);
-
-                    default:
-                        return null;
-
-                }
-            }
-            else
-            {
-                var properties = containerController.GetContainerByName(containerName); // vai buscar as propriedades da record especificada
-                return Ok(properties);
-            }
-        }
-
-        [Route("api/somiod/{applicationName}/{containerName}/record")]
         [HttpPost]
         public IHttpActionResult PostRecord(string applicationName, string containerName)
         {
@@ -317,7 +383,7 @@ namespace SOMIODMiddleware.Controllers
             {
                 recordName = recordName + DateTime.Now.ToString("yyyyMMddHHmmss");
             }
-            recordController.CreateRecord(recordName, containerId); //comment
+            recordController.CreateRecord(recordName, containerId);
             connHelper.EmitMessageToTopic($"{applicationName}/{containerName}/creation", recordName);
 
             return Ok($"Record created successfully with name: {recordName}");
@@ -350,7 +416,7 @@ namespace SOMIODMiddleware.Controllers
 
         #region API Notifications
 
-        [Route("api/somiod/{applicationName}/{containerName}/notification")]
+        [Route("api/somiod/{applicationName}/{containerName}")]
         [HttpPost]
         public IHttpActionResult PostNotification(string applicationName, string containerName)
         {
@@ -382,7 +448,7 @@ namespace SOMIODMiddleware.Controllers
             return Ok($"Notification created successfully with name: {notificationName}");
         }
 
-        [Route("api/somiod/{applicationName}/{containerName}/notification/{notificationName}")]
+        [Route("api/somiod/{applicationName}/{containerName}/notif/{notificationName}")]
         [HttpDelete]
         public IHttpActionResult DeleteNotification(string applicationName, string containerName, string notificationName)
         {
