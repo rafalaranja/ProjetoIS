@@ -62,6 +62,13 @@ namespace MiddlwareTester
                 var response1 = client.Execute<List<String>>(request).Data;
 
                 richTextBox1.Clear();
+
+                if (response1 == null)
+                {
+                    richTextBox1.AppendText("No data found\n");
+                    return;
+                }
+
                 foreach (var name in response1)
                 {
                     richTextBox1.AppendText(name + "\n");
@@ -76,6 +83,13 @@ namespace MiddlwareTester
             var response = client.Execute<List<Application>>(request).Data;
 
             richTextBox1.Clear();
+
+            if (response == null)
+            {
+                richTextBox1.AppendText("No data found\n");
+                return;
+            }
+
             foreach (var Application in response)
             {
                 richTextBox1.AppendText($"Id: {Application.id} : {Application.name} \t {Application.creation_datetime} \n");
@@ -168,6 +182,12 @@ namespace MiddlwareTester
 
         private void btnLocateContainer_Click(object sender, EventArgs e)
         {
+            if(textBoxAppName.Text == "")
+            {
+                MessageBox.Show("Please insert an application name");
+                return;
+            }
+
             RestRequest request = new RestRequest("api/somiod/" + textBoxAppName.Text , Method.Get);
 
             if (comboBox2.SelectedIndex != -1 && comboBox2.Text != "") //caso tenha selecionado um somiod-locate
@@ -175,15 +195,12 @@ namespace MiddlwareTester
                 switch (comboBox2.SelectedIndex)
                 {
                     case 0:
-                        MessageBox.Show("container");
                         request.AddHeader("somiod-locate", "container");
                         break;
                     case 1:
-                        MessageBox.Show("record");
                         request.AddHeader("somiod-locate", "record");
                         break;
                     case 2:
-                        MessageBox.Show("notif");
                         request.AddHeader("somiod-locate", "notification");
                         break;
                     default:
@@ -195,6 +212,12 @@ namespace MiddlwareTester
                 var response1 = client.Execute<List<String>>(request).Data;
 
                 richTextBox2.Clear();
+
+                if (response1 == null)
+                {
+                    richTextBox2.AppendText("No data found\n");
+                    return;
+                }
                 foreach (var name in response1)
                 {
                     richTextBox2.AppendText(name + "\n");
@@ -209,6 +232,13 @@ namespace MiddlwareTester
             var response = client.Execute<List<Application>>(request).Data;
 
             richTextBox2.Clear();
+
+            if (response == null)
+            {
+                richTextBox2.AppendText("No data found\n");
+                return;
+            }
+
             foreach (var Application in response)
             {
                 richTextBox2.AppendText($"Id: {Application.id} : {Application.name} \t {Application.creation_datetime} \n");
@@ -220,6 +250,12 @@ namespace MiddlwareTester
 
         private void btnPostContainer_Click(object sender, EventArgs e)
         {
+            if (textBoxAppName.Text == "")
+            {
+                MessageBox.Show("Please insert an application name");
+                return;
+            }
+
             RestRequest request = new RestRequest("api/somiod/" + textBoxAppName.Text, Method.Post);
 
             request.RequestFormat = DataFormat.Xml;
@@ -245,6 +281,12 @@ namespace MiddlwareTester
 
         private void btnPutContainer_Click(object sender, EventArgs e)
         {
+            if (textBoxAppName.Text == "")
+            {
+                MessageBox.Show("Please insert an application name");
+                return;
+            }
+
             RestRequest request = new RestRequest("api/somiod/" + textBoxAppName.Text + "/" + textPut1Container.Text, Method.Put);
 
             request.RequestFormat = DataFormat.Xml;
@@ -270,6 +312,12 @@ namespace MiddlwareTester
 
         private void btnDeleteContainer_Click(object sender, EventArgs e)
         {
+            if (textBoxAppName.Text == "")
+            {
+                MessageBox.Show("Please insert an application name");
+                return;
+            }
+
             RestRequest request = new RestRequest("api/somiod/" + textBoxAppName.Text + "/" + textDeleteContainer.Text, Method.Delete);
 
             request.RequestFormat = DataFormat.Xml;
@@ -290,6 +338,110 @@ namespace MiddlwareTester
                 richTextBox2.AppendText($"Error: {response.StatusDescription}");
             }
         }
+
+        #endregion
+
+        #region Record Methods
+
+        private void btnLocateRecord_Click(object sender, EventArgs e)
+        {
+            if (textBoxAppName2.Text == "" || textBoxContainerName.Text == "")
+            {
+                MessageBox.Show("Please insert an application/container name");
+                return;
+            }
+
+            RestRequest request = new RestRequest("api/somiod/" + textBoxAppName2.Text + "/" + textBoxContainerName.Text, Method.Get);
+
+            if (comboBox3.SelectedIndex != -1 && comboBox3.Text != "") //caso tenha selecionado um somiod-locate
+            {
+                switch (comboBox3.SelectedIndex)
+                {
+                    case 0:
+                        request.AddHeader("somiod-locate", "record");
+                        break;
+                    case 1:
+                        request.AddHeader("somiod-locate", "notification");
+                        break;
+                    default:
+                        break;
+                }
+
+                request.RequestFormat = DataFormat.Xml;
+
+                var response1 = client.Execute<List<String>>(request).Data;
+
+                richTextBox3.Clear();
+                
+                if(response1 == null) {
+                    richTextBox3.AppendText("No data found\n");
+                    return;
+                }
+
+                foreach (var name in response1)
+                {
+                    richTextBox3.AppendText(name + "\n");
+                }
+
+                return;
+            }
+
+            //caso do get "normal", devolve so os atributos da application
+            request.RequestFormat = DataFormat.Xml;
+
+            var response = client.Execute<List<Container>>(request).Data;
+
+            richTextBox3.Clear();
+
+            if (response == null)
+            {
+                richTextBox3.AppendText("No data found\n");
+                return;
+            }
+
+            foreach (var Container in response)
+            {
+                richTextBox3.AppendText($"Id: {Container.id} : {Container.name} \t {Container.creation_datetime} \n");
+            }
+
+            return;
+        }
+
+        private void btnPostRecord_Click(object sender, EventArgs e) // por acabar
+        {
+            if (textBoxAppName2.Text == "" || textBoxContainerName.Text == "")
+            {
+                MessageBox.Show("Please insert an application/container name");
+                return;
+            }
+
+            RestRequest request = new RestRequest("api/somiod/" + textBoxAppName2.Text + "/" + textBoxContainerName.Text + "/record", Method.Post);
+
+            request.RequestFormat = DataFormat.Xml;
+
+            request.AddBody("<Record>\r\n" +
+                               "    <name>" + textPostRecord.Text + "</name>\r\n" +
+                                "    <content>" + textContentPostRecord.Text + "</content>\r\n" +
+                                "</Record>");
+
+            var response = client.Execute(request);
+
+            richTextBox3.Clear();
+
+            // Verifica se a requisição foi bem-sucedida
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                // Adiciona o conteúdo da resposta no richTextBox
+                richTextBox3.AppendText(response.Content);
+            }
+            else
+            {
+                // Exibe a mensagem de erro no richTextBox
+                richTextBox3.AppendText($"Error: {response.StatusDescription}");
+            }
+        }
+
+
 
         #endregion
 
