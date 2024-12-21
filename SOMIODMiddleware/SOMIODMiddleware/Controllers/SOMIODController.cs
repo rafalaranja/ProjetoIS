@@ -161,7 +161,7 @@ namespace SOMIODMiddleware.Controllers
 
 
         //GET RECORD
-        [Route("api/somiod/{applicationName}/{containerName}/record/{recordName}")]
+        [Route("api/somiod/{applicationName}/{containerName}/record/{recordContent}")]
         [HttpGet]
         public IHttpActionResult GetRecord(string applicationName, string containerName,string recordName)
         {
@@ -379,20 +379,22 @@ namespace SOMIODMiddleware.Controllers
             if (!nodeRecord.HasChildNodes)
                 return BadRequest("Empty request body.");
 
-            string recordName = nodeRecord["content"].InnerText;
-            if (string.IsNullOrWhiteSpace(recordName))
-                return BadRequest("Record content is required.");
-            if (recordController.GetRecordByContentAndParentId(recordName, containerId) > 0)
+            string recordName = nodeRecord["name"].InnerText;
+
+            if (recordController.GetRecordByNameAndParentId(recordName, containerId) > 0)
             {
                 recordName = recordName + DateTime.Now.ToString("yyyyMMddHHmmss");
             }
-            recordController.CreateRecord(recordName, containerId);
+            string recordContent = nodeRecord["content"].InnerText;
+            if (string.IsNullOrWhiteSpace(recordContent))
+                return BadRequest("Record content is required.");
+            recordController.CreateRecord(recordName, recordContent, containerId);
             connHelper.EmitMessageToTopic($"{applicationName}/{containerName}/creation", recordName);
 
             return Ok($"Record created successfully with name: {recordName}");
         }
 
-        [Route("api/somiod/{applicationName}/{containerName}/record/{recordName}")]
+        [Route("api/somiod/{applicationName}/{containerName}/record/{recordContent}")]
         [HttpDelete]
         public IHttpActionResult DeleteRecord(string applicationName, string containerName, string recordName)
         {

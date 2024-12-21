@@ -46,12 +46,12 @@ namespace SOMIODMiddleware.Controllers
 
 
         // Cria um novo registo associado a um container
-        public int CreateRecord(string content, int containerId)
+        public int CreateRecord(string name, string content, int containerId)
         {
             // Inserir o registo na base de dados
             int recordId = DataHelper.TransactWithDatabase<Record>(
-                "INSERT INTO Record(Content, Parent) OUTPUT INSERTED.ID VALUES(@content, @parent)",
-                new Record { content = content, parent = containerId }
+                "INSERT INTO Record(Name, Content, Parent) OUTPUT INSERTED.ID VALUES(@name, @content, @parent)",
+                new Record { name = name, content = content, parent = containerId }
             );
 
             return recordId; // Retorna o ID gerado
@@ -120,6 +120,17 @@ namespace SOMIODMiddleware.Controllers
         public int GetRecordByContentAndParentId(String content, int containerId)
         {
             List<Record> recordList = DataHelper.GetDataFromDatabase<Record>("SELECT * FROM Record WHERE Parent = @parent AND Content = @content", new Record { parent = containerId, content = content });
+            int recordById = 0;
+            if (recordList.Count > 0)
+            {
+                recordById = recordList[0].id;
+            }
+            return recordById;
+        }
+
+        public int GetRecordByNameAndParentId(String record, int containerId)
+        {
+            List<Record> recordList = DataHelper.GetDataFromDatabase<Record>("SELECT * FROM Record WHERE Parent = @parent AND Name = @name", new Record { parent = containerId, name = record });
             int recordById = 0;
             if (recordList.Count > 0)
             {
