@@ -394,7 +394,7 @@ namespace SOMIODMiddleware.Controllers
             return Ok($"Record created successfully with name: {recordName}");
         }
 
-        [Route("api/somiod/{applicationName}/{containerName}/record/{recordContent}")]
+        [Route("api/somiod/{applicationName}/{containerName}/record/{recordName}")]
         [HttpDelete]
         public IHttpActionResult DeleteRecord(string applicationName, string containerName, string recordName)
         {
@@ -406,7 +406,7 @@ namespace SOMIODMiddleware.Controllers
             if (containerId == 0)
                 return BadRequest("Container does not exist.");
 
-            int recordId = recordController.GetRecordByContentAndParentId(recordName, containerId);
+            int recordId = recordController.GetRecordByNameAndParentId(recordName, containerId);
             if (recordId == 0)
                 return BadRequest("Record does not exist.");
 
