@@ -9,6 +9,9 @@ using System.Xml;
 using SOMIODMiddleware.Controllers;
 using SOMIODMiddleware.Models;
 using Microsoft.AspNet.SignalR;
+using static System.Net.Mime.MediaTypeNames;
+using System.ComponentModel;
+using Microsoft.AspNetCore.Http;
 
 
 
@@ -22,7 +25,7 @@ namespace SOMIODMiddleware.Controllers
         private readonly NotificationController notificationController = new NotificationController();
         private readonly ControllerHelper controllerHelper = new ControllerHelper();
         private readonly ConnHelper connHelper = new ConnHelper();
-
+        private Mosquitto mosquitto = new Mosquitto();
 
 
         #region GET Operations
@@ -360,7 +363,7 @@ namespace SOMIODMiddleware.Controllers
 
         #region API Records
 
-        [Route("api/somiod/{applicationName}/{containerName}")]
+        [Route("api/somiod/{applicationName}/{containerName}/record")]
         [HttpPost]
         public IHttpActionResult PostRecord(string applicationName, string containerName)
         {
@@ -416,7 +419,7 @@ namespace SOMIODMiddleware.Controllers
 
         #region API Notifications
 
-        [Route("api/somiod/{applicationName}/{containerName}")]
+        [Route("api/somiod/{applicationName}/{containerName}/notification")]
         [HttpPost]
         public IHttpActionResult PostNotification(string applicationName, string containerName)
         {
@@ -429,26 +432,50 @@ namespace SOMIODMiddleware.Controllers
                 return BadRequest("Container does not exist.");
 
             XmlNode nodeNotification = controllerHelper.BuildXmlNodeFromRequest("Notification");
-            if (!nodeNotification.HasChildNodes)
+            if (nodeNotification == null)
+            {
                 return BadRequest("Empty request body.");
+            }
 
             string notificationName = nodeNotification["name"].InnerText;
-            string notificationEvent = nodeNotification["event"].InnerText;
-            string endpoint = nodeNotification["endpoint"].InnerText;
+            if (string.IsNullOrWhiteSpace(notificationName))
+            {
+                return BadRequest("Notification name is required.");
+            }
 
             if (notificationController.GetNotificationByNameAndParentId(notificationName, containerId) > 0)
             {
                 notificationName = notificationName + DateTime.Now.ToString("yyyyMMddHHmmss");
             }
 
-            if (string.IsNullOrWhiteSpace(notificationName) || string.IsNullOrWhiteSpace(notificationEvent) || string.IsNullOrWhiteSpace(endpoint))
-                return BadRequest("Notification name, event, and endpoint are required.");
+            string notificationEvent = nodeNotification["event"].InnerText;
 
-            notificationController.CreateNotification(notificationName, containerId, notificationEvent, endpoint);
-            return Ok($"Notification created successfully with name: {notificationName}");
+            if (string.IsNullOrWhiteSpace(notificationEvent))
+            {
+                return BadRequest("Notification event is required.");
+            }
+            string notificationEndpoint = $"{applicationName}/{containerName}/{notificationEvent}";
+            string name = "";
+            if((notificationEvent == "creation" || notificationEvent == "deletion"))
+            {
+                int id = notificationController.CreateNotification(notificationName, containerId, notificationEvent, notificationEndpoint);
+                name = notificationController.GetNotificationNameById(id);
+            }
+            else if(notificationEvent == "both")
+            {
+                int firstNot = notificationController.CreateNotification(notificationName, containerId, "creation", notificationEndpoint);
+                int secNot = notificationController.CreateNotification(notificationName, containerId, "deletion", notificationEndpoint);
+
+                string name1 = notificationController.GetNotificationNameById(firstNot);
+                string name2 = notificationController.GetNotificationNameById(secNot);
+
+                name = name1 + " and " + name2;
+            }
+            return Ok($"Notification created successfully with name: {name}");
+
         }
 
-        [Route("api/somiod/{applicationName}/{containerName}/notif/{notificationName}")]
+        [Route("api/somiod/{applicationName}/{containerName}/notification/{notificationName}")]
         [HttpDelete]
         public IHttpActionResult DeleteNotification(string applicationName, string containerName, string notificationName)
         {

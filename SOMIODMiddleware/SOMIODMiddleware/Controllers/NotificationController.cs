@@ -53,6 +53,19 @@ namespace SOMIODMiddleware.Controllers
             );
         }
 
+        public string GetNotificationNameById(int id)
+        {
+            List<Notification> notificationList = DataHelper.GetDataFromDatabase<Notification>(
+                "SELECT * FROM Notification WHERE Id = @id",
+                new Notification { id = id }
+            );
+            if (notificationList.Count > 0)
+            {
+                return notificationList[0].name;
+            }
+            return "";
+        }
+
         // Gets a specific notification by its name
         public int GetNotificationIdByName(string notificationName)
         {
@@ -136,7 +149,7 @@ namespace SOMIODMiddleware.Controllers
             return notificationList;
         }
 
-        public int GetNotificationNameByParentId(String notificationName, int parentId)
+        public int GetNotificationNameByParentId(int parentId)
         {
             List<Notification> notificationList = DataHelper.GetDataFromDatabase<Notification>("SELECT * FROM Notification WHERE Parent = @parent AND Name = @name", new Notification { parent = parentId, name = notificationName });
             int notificationById = 0;
