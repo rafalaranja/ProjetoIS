@@ -372,3 +372,7 @@ SOMIODMiddleware\SOMIODMiddleware\bin
 SOMIODMiddleware\SOMIODMiddleware\obj\Debug
 /SOMIODMiddleware/.vs
 /SOMIODMiddleware/.vs/SOMIODMiddleware/CopilotIndices
+SOMIODMiddleware/.vs/SOMIODMiddleware/config/applicationhost.config
+SOMIODMiddleware/.vs/SOMIODMiddleware/CopilotIndices/0.2.1653.9816/SemanticSymbols.db-shm
+SOMIODMiddleware/SOMIODMiddleware/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+SOMIODMiddleware/SOMIODMiddleware/obj/Debug/SOMIODMiddleware.csproj.AssemblyReference.cache
