@@ -12,6 +12,7 @@ using Microsoft.AspNet.SignalR;
 using static System.Net.Mime.MediaTypeNames;
 using System.ComponentModel;
 using Microsoft.AspNetCore.Http;
+using System.IO;
 
 
 
@@ -361,12 +362,14 @@ namespace SOMIODMiddleware.Controllers
 
         #endregion
 
-        #region API Records
+        #region POST RecordOrNoti
 
-        [Route("api/somiod/{applicationName}/{containerName}/record")]
+
+        [Route("api/somiod/{applicationName}/{containerName}")]
         [HttpPost]
-        public IHttpActionResult PostRecord(string applicationName, string containerName)
+        public IHttpActionResult PostRecordOrNotification(string applicationName, string containerName)
         {
+            // Verificar a existência da aplicação e do container
             int applicationId = applicationController.GetApplicationIdByName(applicationName);
             if (applicationId == 0)
                 return BadRequest("Application does not exist.");
@@ -375,24 +378,110 @@ namespace SOMIODMiddleware.Controllers
             if (containerId == 0)
                 return BadRequest("Container does not exist.");
 
-            XmlNode nodeRecord = controllerHelper.BuildXmlNodeFromRequest("Record");
-            if (!nodeRecord.HasChildNodes)
-                return BadRequest("Empty request body.");
-
-            string recordName = nodeRecord["name"].InnerText;
-
-            if (recordController.GetRecordByNameAndParentId(recordName, containerId) > 0)
+            // Obter o corpo da requisição como XML
+            XmlNode rootNode;
+            try
             {
-                recordName = recordName + DateTime.Now.ToString("yyyyMMddHHmmss");
-            }
-            string recordContent = nodeRecord["content"].InnerText;
-            if (string.IsNullOrWhiteSpace(recordContent))
-                return BadRequest("Record content is required.");
-            recordController.CreateRecord(recordName, recordContent, containerId);
-            connHelper.EmitMessageToTopic($"{applicationName}/{containerName}/creation", recordName);
+                using (var stream = Request.Content.ReadAsStreamAsync().Result) // Leia o conteúdo da requisição
+                {
+                    if (stream == null || stream.Length == 0)
+                        return BadRequest("Request body is empty.");
 
-            return Ok($"Record created successfully with name: {recordName}");
+                    using (var reader = new StreamReader(stream))
+                    {
+                        string xmlData = reader.ReadToEnd();
+                        if (string.IsNullOrWhiteSpace(xmlData))
+                            return BadRequest("Request body is empty.");
+
+                        XmlDocument xmlDocument = new XmlDocument();
+                        xmlDocument.LoadXml(xmlData); // Tentar carregar o XML
+
+                        rootNode = xmlDocument.DocumentElement; // ve se e record ou notification
+                        if (rootNode == null || (rootNode.Name != "Record" && rootNode.Name != "Notification"))
+                            return BadRequest("Invalid root element. Expected 'Record' or 'Notification'.");
+                    }
+                }
+            }
+            catch (XmlException)
+            {
+                return BadRequest("Invalid XML format.");
+            }
+
+            // Processar de acordo com o tipo 
+            if (rootNode.Name == "Record")
+            {
+                // Processar Record
+                string recordName = rootNode["name"]?.InnerText;
+                string recordContent = rootNode["content"]?.InnerText;
+
+                if (string.IsNullOrWhiteSpace(recordName))
+                    return BadRequest("Record name is required.");
+                if (string.IsNullOrWhiteSpace(recordContent))
+                    return BadRequest("Record content is required.");
+
+                // Evitar nomes duplicados
+                if (recordController.GetRecordByNameAndParentId(recordName, containerId) > 0)
+                {
+                    recordName = recordName + DateTime.Now.ToString("yyyyMMddHHmmss");
+                }
+
+                recordController.CreateRecord(recordName, recordContent, containerId);
+                connHelper.EmitMessageToTopic($"{applicationName}/{containerName}/creation", recordName);
+
+                return Ok($"Record created successfully with name: {recordName}");
+            }
+            else if (rootNode.Name == "Notification")
+            {
+                // Processar Notification
+                string notificationName = rootNode["name"]?.InnerText;
+                string notificationEvent = rootNode["event"]?.InnerText;
+
+                if (string.IsNullOrWhiteSpace(notificationName))
+                    return BadRequest("Notification name is required.");
+                if (string.IsNullOrWhiteSpace(notificationEvent))
+                    return BadRequest("Notification event is required.");
+
+                // Evitar nomes duplicados
+                if (notificationController.GetNotificationByNameAndParentId(notificationName, containerId) > 0)
+                {
+                    notificationName = notificationName + DateTime.Now.ToString("yyyyMMddHHmmss");
+                }
+
+                string notificationEndpoint = $"{applicationName}/{containerName}/{notificationEvent}";
+                string name;
+
+                if (notificationEvent == "creation" || notificationEvent == "deletion")
+                {
+                    int id = notificationController.CreateNotification(notificationName, containerId, notificationEvent, notificationEndpoint);
+                    name = notificationController.GetNotificationNameById(id);
+                }
+                else if (notificationEvent == "both")
+                {
+                    int firstNot = notificationController.CreateNotification(notificationName, containerId, "creation", notificationEndpoint);
+                    int secNot = notificationController.CreateNotification(notificationName, containerId, "deletion", notificationEndpoint);
+
+                    string name1 = notificationController.GetNotificationNameById(firstNot);
+                    string name2 = notificationController.GetNotificationNameById(secNot);
+
+                    name = name1 + " and " + name2;
+                }
+                else
+                {
+                    return BadRequest("Invalid notification event type.");
+                }
+
+                return Ok($"Notification created successfully with name: {name}");
+            }
+
+            // Caso inesperado (não deveria chegar aqui devido às validações anteriores)
+            return BadRequest("Unexpected XML structure.");
         }
+
+
+        #endregion
+
+        #region API Records
+
 
         [Route("api/somiod/{applicationName}/{containerName}/record/{recordName}")]
         [HttpDelete]
@@ -420,6 +509,8 @@ namespace SOMIODMiddleware.Controllers
         #endregion
 
         #region API Notifications
+
+        /*
 
         [Route("api/somiod/{applicationName}/{containerName}/notification")]
         [HttpPost]
@@ -476,6 +567,7 @@ namespace SOMIODMiddleware.Controllers
             return Ok($"Notification created successfully with name: {name}");
 
         }
+        */
 
         [Route("api/somiod/{applicationName}/{containerName}/notification/{notificationName}")]
         [HttpDelete]
