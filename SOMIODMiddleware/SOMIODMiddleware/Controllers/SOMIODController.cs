@@ -497,7 +497,7 @@ namespace SOMIODMiddleware.Controllers
 
         #region API Notifications
 
-        [Route("api/somiod/{applicationName}/{containerName}/notification/{notificationName}")]
+        [Route("api/somiod/{applicationName}/{containerName}/notif/{notificationName}")]
         [HttpDelete]
         public IHttpActionResult DeleteNotification(string applicationName, string containerName, string notificationName)
         {
