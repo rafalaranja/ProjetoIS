@@ -68,9 +68,12 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textContentPostRecord = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.textBoxAppName2 = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.textBoxContainerName = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.btnPutRecord = new System.Windows.Forms.Button();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.btnLocateRecord = new System.Windows.Forms.Button();
             this.btnDeleteRecord = new System.Windows.Forms.Button();
@@ -78,22 +81,38 @@
             this.label18 = new System.Windows.Forms.Label();
             this.textPostRecord = new System.Windows.Forms.TextBox();
             this.textDeleteRecord = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.textPut1Record = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
             this.btnPostRecord = new System.Windows.Forms.Button();
-            this.textPut2Record = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.textBoxAppName2 = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.textContentPostRecord = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.richTextBox4 = new System.Windows.Forms.RichTextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnDeleteApp
@@ -496,7 +515,6 @@
             this.groupBox3.Controls.Add(this.label25);
             this.groupBox3.Controls.Add(this.textBoxContainerName);
             this.groupBox3.Controls.Add(this.label17);
-            this.groupBox3.Controls.Add(this.btnPutRecord);
             this.groupBox3.Controls.Add(this.comboBox3);
             this.groupBox3.Controls.Add(this.btnLocateRecord);
             this.groupBox3.Controls.Add(this.btnDeleteRecord);
@@ -504,13 +522,9 @@
             this.groupBox3.Controls.Add(this.label18);
             this.groupBox3.Controls.Add(this.textPostRecord);
             this.groupBox3.Controls.Add(this.textDeleteRecord);
-            this.groupBox3.Controls.Add(this.label19);
             this.groupBox3.Controls.Add(this.label20);
-            this.groupBox3.Controls.Add(this.textPut1Record);
             this.groupBox3.Controls.Add(this.label21);
-            this.groupBox3.Controls.Add(this.label22);
             this.groupBox3.Controls.Add(this.btnPostRecord);
-            this.groupBox3.Controls.Add(this.textPut2Record);
             this.groupBox3.Controls.Add(this.label23);
             this.groupBox3.Controls.Add(this.label24);
             this.groupBox3.Location = new System.Drawing.Point(671, 0);
@@ -519,6 +533,40 @@
             this.groupBox3.TabIndex = 42;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Record";
+            // 
+            // textContentPostRecord
+            // 
+            this.textContentPostRecord.Location = new System.Drawing.Point(162, 391);
+            this.textContentPostRecord.Name = "textContentPostRecord";
+            this.textContentPostRecord.Size = new System.Drawing.Size(125, 22);
+            this.textContentPostRecord.TabIndex = 24;
+            this.textContentPostRecord.Text = "content post";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(42, 391);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(100, 16);
+            this.label26.TabIndex = 23;
+            this.label26.Text = "Record Content";
+            // 
+            // textBoxAppName2
+            // 
+            this.textBoxAppName2.Location = new System.Drawing.Point(163, 62);
+            this.textBoxAppName2.Name = "textBoxAppName2";
+            this.textBoxAppName2.Size = new System.Drawing.Size(100, 22);
+            this.textBoxAppName2.TabIndex = 22;
+            this.textBoxAppName2.Text = "Test";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(28, 65);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(114, 16);
+            this.label25.TabIndex = 21;
+            this.label25.Text = "Application Name";
             // 
             // textBoxContainerName
             // 
@@ -537,29 +585,20 @@
             this.label17.TabIndex = 19;
             this.label17.Text = "Container Name";
             // 
-            // btnPutRecord
-            // 
-            this.btnPutRecord.Location = new System.Drawing.Point(106, 346);
-            this.btnPutRecord.Name = "btnPutRecord";
-            this.btnPutRecord.Size = new System.Drawing.Size(100, 36);
-            this.btnPutRecord.TabIndex = 8;
-            this.btnPutRecord.Text = "PUT";
-            this.btnPutRecord.UseVisualStyleBackColor = true;
-            // 
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Items.AddRange(new object[] {
             "record",
             "notification"});
-            this.comboBox3.Location = new System.Drawing.Point(147, 176);
+            this.comboBox3.Location = new System.Drawing.Point(147, 203);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(135, 24);
             this.comboBox3.TabIndex = 4;
             // 
             // btnLocateRecord
             // 
-            this.btnLocateRecord.Location = new System.Drawing.Point(106, 136);
+            this.btnLocateRecord.Location = new System.Drawing.Point(106, 163);
             this.btnLocateRecord.Name = "btnLocateRecord";
             this.btnLocateRecord.Size = new System.Drawing.Size(100, 37);
             this.btnLocateRecord.TabIndex = 0;
@@ -595,7 +634,7 @@
             // 
             // textPostRecord
             // 
-            this.textPostRecord.Location = new System.Drawing.Point(162, 272);
+            this.textPostRecord.Location = new System.Drawing.Point(162, 354);
             this.textPostRecord.Name = "textPostRecord";
             this.textPostRecord.Size = new System.Drawing.Size(125, 22);
             this.textPostRecord.TabIndex = 2;
@@ -609,67 +648,33 @@
             this.textDeleteRecord.TabIndex = 16;
             this.textDeleteRecord.Text = "RecordPutTest";
             // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(42, 400);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(92, 16);
-            this.label19.TabIndex = 15;
-            this.label19.Text = "Record Name";
-            // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(42, 179);
+            this.label20.Location = new System.Drawing.Point(42, 206);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(99, 16);
             this.label20.TabIndex = 5;
             this.label20.Text = "Somiod-Locate";
             // 
-            // textPut1Record
-            // 
-            this.textPut1Record.Location = new System.Drawing.Point(192, 400);
-            this.textPut1Record.Name = "textPut1Record";
-            this.textPut1Record.Size = new System.Drawing.Size(120, 22);
-            this.textPut1Record.TabIndex = 14;
-            this.textPut1Record.Text = "RecordPostTest";
-            // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(42, 275);
+            this.label21.Location = new System.Drawing.Point(42, 357);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(92, 16);
             this.label21.TabIndex = 6;
             this.label21.Text = "Record Name";
             // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(42, 440);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(122, 16);
-            this.label22.TabIndex = 13;
-            this.label22.Text = "New Record Name";
-            // 
             // btnPostRecord
             // 
-            this.btnPostRecord.Location = new System.Drawing.Point(106, 217);
+            this.btnPostRecord.Location = new System.Drawing.Point(106, 299);
             this.btnPostRecord.Name = "btnPostRecord";
             this.btnPostRecord.Size = new System.Drawing.Size(100, 36);
             this.btnPostRecord.TabIndex = 7;
             this.btnPostRecord.Text = "POST";
             this.btnPostRecord.UseVisualStyleBackColor = true;
             this.btnPostRecord.Click += new System.EventHandler(this.btnPostRecord_Click);
-            // 
-            // textPut2Record
-            // 
-            this.textPut2Record.Location = new System.Drawing.Point(192, 440);
-            this.textPut2Record.Name = "textPut2Record";
-            this.textPut2Record.Size = new System.Drawing.Size(120, 22);
-            this.textPut2Record.TabIndex = 12;
-            this.textPut2Record.Text = "RecordPutTest";
             // 
             // label23
             // 
@@ -689,45 +694,235 @@
             this.label24.TabIndex = 10;
             this.label24.Text = "@\".../api/somiod/{applicationName}/{containerName}";
             // 
-            // textBoxAppName2
+            // groupBox4
             // 
-            this.textBoxAppName2.Location = new System.Drawing.Point(163, 62);
-            this.textBoxAppName2.Name = "textBoxAppName2";
-            this.textBoxAppName2.Size = new System.Drawing.Size(100, 22);
-            this.textBoxAppName2.TabIndex = 22;
-            this.textBoxAppName2.Text = "Test";
+            this.groupBox4.Controls.Add(this.textBox6);
+            this.groupBox4.Controls.Add(this.label33);
+            this.groupBox4.Controls.Add(this.textBox7);
+            this.groupBox4.Controls.Add(this.label34);
+            this.groupBox4.Controls.Add(this.textBox1);
+            this.groupBox4.Controls.Add(this.label19);
+            this.groupBox4.Controls.Add(this.textBox2);
+            this.groupBox4.Controls.Add(this.label22);
+            this.groupBox4.Controls.Add(this.textBox3);
+            this.groupBox4.Controls.Add(this.label27);
+            this.groupBox4.Controls.Add(this.comboBox4);
+            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.button2);
+            this.groupBox4.Controls.Add(this.richTextBox4);
+            this.groupBox4.Controls.Add(this.label28);
+            this.groupBox4.Controls.Add(this.textBox4);
+            this.groupBox4.Controls.Add(this.textBox5);
+            this.groupBox4.Controls.Add(this.label29);
+            this.groupBox4.Controls.Add(this.label30);
+            this.groupBox4.Controls.Add(this.button3);
+            this.groupBox4.Controls.Add(this.label31);
+            this.groupBox4.Controls.Add(this.label32);
+            this.groupBox4.Location = new System.Drawing.Point(1013, 0);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(336, 729);
+            this.groupBox4.TabIndex = 43;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Notification";
             // 
-            // label25
+            // textBox6
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(28, 65);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(114, 16);
-            this.label25.TabIndex = 21;
-            this.label25.Text = "Application Name";
+            this.textBox6.Location = new System.Drawing.Point(162, 407);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(125, 22);
+            this.textBox6.TabIndex = 28;
+            this.textBox6.Text = "content post";
             // 
-            // label26
+            // label33
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(42, 309);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(100, 16);
-            this.label26.TabIndex = 23;
-            this.label26.Text = "Record Content";
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(23, 407);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(127, 16);
+            this.label33.TabIndex = 27;
+            this.label33.Text = "Notificaiton Enableb";
             // 
-            // textContentPostRecord
+            // textBox7
             // 
-            this.textContentPostRecord.Location = new System.Drawing.Point(162, 309);
-            this.textContentPostRecord.Name = "textContentPostRecord";
-            this.textContentPostRecord.Size = new System.Drawing.Size(125, 22);
-            this.textContentPostRecord.TabIndex = 24;
-            this.textContentPostRecord.Text = "content post";
+            this.textBox7.Location = new System.Drawing.Point(162, 370);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(125, 22);
+            this.textBox7.TabIndex = 25;
+            this.textBox7.Text = "RecordPostTest";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(23, 373);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(129, 16);
+            this.label34.TabIndex = 26;
+            this.label34.Text = "Notification Endpoint";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(162, 335);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(125, 22);
+            this.textBox1.TabIndex = 24;
+            this.textBox1.Text = "content post";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(23, 335);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(110, 16);
+            this.label19.TabIndex = 23;
+            this.label19.Text = "Notificaiton Event";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(163, 62);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 22);
+            this.textBox2.TabIndex = 22;
+            this.textBox2.Text = "Test";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(28, 65);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(114, 16);
+            this.label22.TabIndex = 21;
+            this.label22.Text = "Application Name";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(163, 101);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 22);
+            this.textBox3.TabIndex = 20;
+            this.textBox3.Text = "Test";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(28, 101);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(104, 16);
+            this.label27.TabIndex = 19;
+            this.label27.Text = "Container Name";
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Items.AddRange(new object[] {
+            "record",
+            "notification"});
+            this.comboBox4.Location = new System.Drawing.Point(147, 203);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(135, 24);
+            this.comboBox4.TabIndex = 4;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(106, 163);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 37);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Locate/Get";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(106, 479);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(100, 36);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "DELETE";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox4
+            // 
+            this.richTextBox4.Location = new System.Drawing.Point(6, 583);
+            this.richTextBox4.Name = "richTextBox4";
+            this.richTextBox4.Size = new System.Drawing.Size(315, 140);
+            this.richTextBox4.TabIndex = 1;
+            this.richTextBox4.Text = "";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(42, 537);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(113, 16);
+            this.label28.TabIndex = 17;
+            this.label28.Text = "Notification Name";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(162, 298);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(125, 22);
+            this.textBox4.TabIndex = 2;
+            this.textBox4.Text = "RecordPostTest";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(162, 534);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(120, 22);
+            this.textBox5.TabIndex = 16;
+            this.textBox5.Text = "RecordPutTest";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(42, 206);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(99, 16);
+            this.label29.TabIndex = 5;
+            this.label29.Text = "Somiod-Locate";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(23, 304);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(113, 16);
+            this.label30.TabIndex = 6;
+            this.label30.Text = "Notification Name";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(106, 243);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(100, 36);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "POST";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(3, 564);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(70, 16);
+            this.label31.TabIndex = 11;
+            this.label31.Text = "Response";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(3, 17);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(330, 16);
+            this.label32.TabIndex = 10;
+            this.label32.Text = "@\".../api/somiod/{applicationName}/{containerName}";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1316, 735);
+            this.ClientSize = new System.Drawing.Size(1362, 735);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox2);
@@ -741,6 +936,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -789,7 +986,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox textBoxContainerName;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Button btnPutRecord;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Button btnLocateRecord;
         private System.Windows.Forms.Button btnDeleteRecord;
@@ -797,19 +993,38 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox textPostRecord;
         private System.Windows.Forms.TextBox textDeleteRecord;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox textPut1Record;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button btnPostRecord;
-        private System.Windows.Forms.TextBox textPut2Record;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox textBoxAppName2;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox textContentPostRecord;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.RichTextBox richTextBox4;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label label34;
     }
 }
 
