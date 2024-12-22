@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\somiodmiddleware\\controllers\\somiodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|c:\\is\\projeto\\projetois\\somiodmiddleware\\somiodmiddleware\\controllers\\somiodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|solutionrelative:somiodmiddleware\\controllers\\somiodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\somiodmiddleware\\helper\\controllerhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|solutionrelative:somiodmiddleware\\helper\\controllerhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\somiodmiddleware\\helper\\mosquitto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|solutionrelative:somiodmiddleware\\helper\\mosquitto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -48,7 +48,7 @@
               "RelativeDocumentMoniker": "SOMIODMiddleware\\Controllers\\SOMIODController.cs",
               "ToolTip": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Controllers\\SOMIODController.cs",
               "RelativeToolTip": "SOMIODMiddleware\\Controllers\\SOMIODController.cs",
-              "ViewState": "AgIAALwBAAAAAAAAAAAswNMBAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAJEBAAAAAAAAAAAqwMgBAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-12T15:21:55.603Z",
               "EditorCaption": ""
@@ -56,14 +56,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ControllerHelper.cs",
-              "DocumentMoniker": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Helper\\ControllerHelper.cs",
-              "RelativeDocumentMoniker": "SOMIODMiddleware\\Helper\\ControllerHelper.cs",
-              "ToolTip": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Helper\\ControllerHelper.cs",
-              "RelativeToolTip": "SOMIODMiddleware\\Helper\\ControllerHelper.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAcwBEAAAAoAAAAAAAAAA==",
+              "Title": "Mosquitto.cs",
+              "DocumentMoniker": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Helper\\Mosquitto.cs",
+              "RelativeDocumentMoniker": "SOMIODMiddleware\\Helper\\Mosquitto.cs",
+              "ToolTip": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Helper\\Mosquitto.cs",
+              "RelativeToolTip": "SOMIODMiddleware\\Helper\\Mosquitto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-21T18:35:24.781Z"
+              "WhenOpened": "2024-12-22T14:53:34.592Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -34,6 +34,7 @@ namespace SOMIODMiddleware.Controllers
         }
 
 
+
         #region GET Operations
 
         //GET ALL APPLICATIONS + LOCATE
@@ -374,7 +375,6 @@ namespace SOMIODMiddleware.Controllers
         [HttpPost]
         public IHttpActionResult PostRecordOrNotification(string applicationName, string containerName)
         {
-            // Verificar a existência da aplicação e do container
             int applicationId = applicationController.GetApplicationIdByName(applicationName);
             if (applicationId == 0)
                 return BadRequest("Application does not exist.");
@@ -383,11 +383,10 @@ namespace SOMIODMiddleware.Controllers
             if (containerId == 0)
                 return BadRequest("Container does not exist.");
 
-            // Obter o corpo da requisição como XML
             XmlNode rootNode;
             try
             {
-                using (var stream = Request.Content.ReadAsStreamAsync().Result) // Leia o conteúdo da requisição
+                using (var stream = Request.Content.ReadAsStreamAsync().Result)
                 {
                     if (stream == null || stream.Length == 0)
                         return BadRequest("Request body is empty.");
@@ -399,9 +398,8 @@ namespace SOMIODMiddleware.Controllers
                             return BadRequest("Request body is empty.");
 
                         XmlDocument xmlDocument = new XmlDocument();
-                        xmlDocument.LoadXml(xmlData); // Tentar carregar o XML
-
-                        rootNode = xmlDocument.DocumentElement; // ve se e record ou notification
+                        xmlDocument.LoadXml(xmlData);
+                        rootNode = xmlDocument.DocumentElement;
                         if (rootNode == null || (rootNode.Name != "Record" && rootNode.Name != "Notification"))
                             return BadRequest("Invalid root element. Expected 'Record' or 'Notification'.");
                     }
@@ -412,10 +410,8 @@ namespace SOMIODMiddleware.Controllers
                 return BadRequest("Invalid XML format.");
             }
 
-            // Processar de acordo com o tipo 
             if (rootNode.Name == "Record")
             {
-                // Processar Record
                 string recordName = rootNode["name"]?.InnerText;
                 string recordContent = rootNode["content"]?.InnerText;
 
@@ -424,7 +420,6 @@ namespace SOMIODMiddleware.Controllers
                 if (string.IsNullOrWhiteSpace(recordContent))
                     return BadRequest("Record content is required.");
 
-                // Evitar nomes duplicados
                 if (recordController.GetRecordByNameAndParentId(recordName, containerId) > 0)
                 {
                     recordName = recordName + DateTime.Now.ToString("yyyyMMddHHmmss");
@@ -433,11 +428,14 @@ namespace SOMIODMiddleware.Controllers
                 recordController.CreateRecord(recordName, recordContent, containerId);
                 connHelper.EmitMessageToTopic($"{applicationName}/{containerName}/creation", recordName);
 
+                // Publicar no broker MQTT
+                mosquitto.Publish($"api/somiod/{applicationName}/{containerName}/creation",
+                    $"<notification><type>creation</type><resource>{recordName}</resource></notification>");
+
                 return Ok($"Record created successfully with name: {recordName}");
             }
             else if (rootNode.Name == "Notification")
             {
-                // Processar Notification
                 string notificationName = rootNode["name"]?.InnerText;
                 string notificationEvent = rootNode["event"]?.InnerText;
 
@@ -446,39 +444,21 @@ namespace SOMIODMiddleware.Controllers
                 if (string.IsNullOrWhiteSpace(notificationEvent))
                     return BadRequest("Notification event is required.");
 
-                // Evitar nomes duplicados
                 if (notificationController.GetNotificationByNameAndParentId(notificationName, containerId) > 0)
                 {
                     notificationName = notificationName + DateTime.Now.ToString("yyyyMMddHHmmss");
                 }
 
                 string notificationEndpoint = $"{applicationName}/{containerName}/{notificationEvent}";
-                string name;
+                int notificationId = notificationController.CreateNotification(notificationName, containerId, notificationEvent, notificationEndpoint);
 
-                if (notificationEvent == "creation" || notificationEvent == "deletion")
-                {
-                    int id = notificationController.CreateNotification(notificationName, containerId, notificationEvent, notificationEndpoint);
-                    name = notificationController.GetNotificationNameById(id);
-                }
-                else if (notificationEvent == "both")
-                {
-                    int firstNot = notificationController.CreateNotification(notificationName, containerId, "creation", notificationEndpoint);
-                    int secNot = notificationController.CreateNotification(notificationName, containerId, "deletion", notificationEndpoint);
+                // Publicar notificação no MQTT
+                mosquitto.Publish($"api/somiod/{notificationEndpoint}",
+                    $"<notification><type>{notificationEvent}</type><resource>{notificationName}</resource></notification>");
 
-                    string name1 = notificationController.GetNotificationNameById(firstNot);
-                    string name2 = notificationController.GetNotificationNameById(secNot);
-
-                    name = name1 + " and " + name2;
-                }
-                else
-                {
-                    return BadRequest("Invalid notification event type.");
-                }
-
-                return Ok($"Notification created successfully with name: {name}");
+                return Ok($"Notification created successfully with name: {notificationName}");
             }
 
-            // Caso inesperado (não deveria chegar aqui devido às validações anteriores)
             return BadRequest("Unexpected XML structure.");
         }
 
