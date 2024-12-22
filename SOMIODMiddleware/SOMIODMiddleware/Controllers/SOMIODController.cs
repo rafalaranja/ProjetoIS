@@ -168,7 +168,7 @@ namespace SOMIODMiddleware.Controllers
 
 
         //GET RECORD
-        [Route("api/somiod/{applicationName}/{containerName}/record/{recordContent}")]
+        [Route("api/somiod/{applicationName}/{containerName}/record/{recordName}")]
         [HttpGet]
         public IHttpActionResult GetRecord(string applicationName, string containerName,string recordName)
         {
