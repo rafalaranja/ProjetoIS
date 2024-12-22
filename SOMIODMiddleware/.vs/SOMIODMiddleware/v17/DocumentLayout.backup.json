@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\",
+  "WorkspaceRootPath": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|c:\\is\\projeto\\projetois\\somiodmiddleware\\somiodmiddleware\\controllers\\somiodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|c:\\maria\\uni\\3ano\\is\\projeti\\projetois\\somiodmiddleware\\somiodmiddleware\\controllers\\somiodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|solutionrelative:somiodmiddleware\\controllers\\somiodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\somiodmiddleware\\helper\\mosquitto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\somiodmiddleware\\helper\\mosquitto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|solutionrelative:somiodmiddleware\\helper\\mosquitto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -22,7 +22,7 @@
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Bookmark",
@@ -34,7 +34,7 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
             },
             {
               "$type": "Bookmark",
@@ -44,11 +44,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "SOMIODController.cs",
-              "DocumentMoniker": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Controllers\\SOMIODController.cs",
+              "DocumentMoniker": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Controllers\\SOMIODController.cs",
               "RelativeDocumentMoniker": "SOMIODMiddleware\\Controllers\\SOMIODController.cs",
-              "ToolTip": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Controllers\\SOMIODController.cs",
+              "ToolTip": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Controllers\\SOMIODController.cs",
               "RelativeToolTip": "SOMIODMiddleware\\Controllers\\SOMIODController.cs",
-              "ViewState": "AgIAAJEBAAAAAAAAAAAqwMgBAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAAKwBAAAAAAAAAAAAAMUBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-12T15:21:55.603Z",
               "EditorCaption": ""
@@ -57,11 +57,11 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Mosquitto.cs",
-              "DocumentMoniker": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Helper\\Mosquitto.cs",
+              "DocumentMoniker": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Helper\\Mosquitto.cs",
               "RelativeDocumentMoniker": "SOMIODMiddleware\\Helper\\Mosquitto.cs",
-              "ToolTip": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Helper\\Mosquitto.cs",
+              "ToolTip": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Helper\\Mosquitto.cs",
               "RelativeToolTip": "SOMIODMiddleware\\Helper\\Mosquitto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAwAwAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-22T14:53:34.592Z",
               "EditorCaption": ""

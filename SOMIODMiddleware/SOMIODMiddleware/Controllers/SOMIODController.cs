@@ -438,19 +438,21 @@ namespace SOMIODMiddleware.Controllers
             {
                 string notificationName = rootNode["name"]?.InnerText;
                 string notificationEvent = rootNode["event"]?.InnerText;
+                string notificationEndpoint = rootNode["endpoint"]?.InnerText;
 
                 if (string.IsNullOrWhiteSpace(notificationName))
                     return BadRequest("Notification name is required.");
                 if (string.IsNullOrWhiteSpace(notificationEvent))
                     return BadRequest("Notification event is required.");
+                if (string.IsNullOrWhiteSpace(notificationEndpoint))
+                    return BadRequest("Notification endpoint is required.");
 
                 if (notificationController.GetNotificationByNameAndParentId(notificationName, containerId) > 0)
                 {
                     notificationName = notificationName + DateTime.Now.ToString("yyyyMMddHHmmss");
                 }
 
-                string notificationEndpoint = $"{applicationName}/{containerName}/{notificationEvent}";
-                int notificationId = notificationController.CreateNotification(notificationName, containerId, notificationEvent, notificationEndpoint);
+                notificationController.CreateNotification(notificationName, containerId, notificationEvent, notificationEndpoint);
 
                 // Publicar notificação no MQTT
                 mosquitto.Publish($"api/somiod/{notificationEndpoint}",
