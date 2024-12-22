@@ -1,46 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\",
+  "WorkspaceRootPath": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|c:\\maria\\uni\\3ano\\is\\projeti\\projetois\\somiodmiddleware\\somiodmiddleware\\controllers\\somiodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\somiodmiddleware\\controllers\\somiodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|solutionrelative:somiodmiddleware\\controllers\\somiodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|c:\\maria\\uni\\3ano\\is\\projeti\\projetois\\somiodmiddleware\\somiodmiddleware\\helper\\controllerhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\somiodmiddleware\\helper\\controllerhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|solutionrelative:somiodmiddleware\\helper\\controllerhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\somiodmiddleware\\models\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|solutionrelative:somiodmiddleware\\models\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\somiodmiddleware\\models\\application.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|solutionrelative:somiodmiddleware\\models\\application.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\somiodmiddleware\\controllers\\recordcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|solutionrelative:somiodmiddleware\\controllers\\recordcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\somiodmiddleware\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E7091A65-0CDB-4729-A7E6-B078055765AE}|SOMIODMiddleware\\SOMIODMiddleware.csproj|solutionrelative:somiodmiddleware\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{10076EB3-2EF1-4351-8F9C-AD05673F20F5}|AppA\\AppA.csproj|C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\appa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{10076EB3-2EF1-4351-8F9C-AD05673F20F5}|AppA\\AppA.csproj|solutionrelative:appa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{10076EB3-2EF1-4351-8F9C-AD05673F20F5}|AppA\\AppA.csproj|C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\appa\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{10076EB3-2EF1-4351-8F9C-AD05673F20F5}|AppA\\AppA.csproj|solutionrelative:appa\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{10076EB3-2EF1-4351-8F9C-AD05673F20F5}|AppA\\AppA.csproj|C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\appa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{10076EB3-2EF1-4351-8F9C-AD05673F20F5}|AppA\\AppA.csproj|solutionrelative:appa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B6AFF1F-3D28-402E-86B5-DB50A57FBA37}|MiddlwareTester\\MiddlwareTester.csproj|C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\middlwaretester\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B6AFF1F-3D28-402E-86B5-DB50A57FBA37}|MiddlwareTester\\MiddlwareTester.csproj|solutionrelative:middlwaretester\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -49,12 +17,12 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 137,
+          "DockedWidth": 200,
           "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
             },
             {
               "$type": "Bookmark",
@@ -66,128 +34,36 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ControllerHelper.cs",
-              "DocumentMoniker": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Helper\\ControllerHelper.cs",
-              "RelativeDocumentMoniker": "SOMIODMiddleware\\Helper\\ControllerHelper.cs",
-              "ToolTip": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Helper\\ControllerHelper.cs*",
-              "RelativeToolTip": "SOMIODMiddleware\\Helper\\ControllerHelper.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAsAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T02:31:55.868Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "SOMIODController.cs",
-              "DocumentMoniker": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Controllers\\SOMIODController.cs",
+              "DocumentMoniker": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Controllers\\SOMIODController.cs",
               "RelativeDocumentMoniker": "SOMIODMiddleware\\Controllers\\SOMIODController.cs",
-              "ToolTip": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Controllers\\SOMIODController.cs*",
+              "ToolTip": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Controllers\\SOMIODController.cs*",
               "RelativeToolTip": "SOMIODMiddleware\\Controllers\\SOMIODController.cs*",
-              "ViewState": "AgIAAHABAAAAAAAAAAA+wIIBAAA8AAAAAAAAAA==",
+              "ViewState": "AgIAALwBAAAAAAAAAAAqwNMBAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T01:59:56.433Z",
+              "WhenOpened": "2024-12-12T15:21:55.603Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Application.cs",
-              "DocumentMoniker": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Models\\Application.cs",
-              "RelativeDocumentMoniker": "SOMIODMiddleware\\Models\\Application.cs",
-              "ToolTip": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Models\\Application.cs",
-              "RelativeToolTip": "SOMIODMiddleware\\Models\\Application.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "ControllerHelper.cs",
+              "DocumentMoniker": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Helper\\ControllerHelper.cs",
+              "RelativeDocumentMoniker": "SOMIODMiddleware\\Helper\\ControllerHelper.cs",
+              "ToolTip": "C:\\IS\\Projeto\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Helper\\ControllerHelper.cs",
+              "RelativeToolTip": "SOMIODMiddleware\\Helper\\ControllerHelper.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAcwBEAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T02:06:41.293Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Notification.cs",
-              "DocumentMoniker": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Models\\Notification.cs",
-              "RelativeDocumentMoniker": "SOMIODMiddleware\\Models\\Notification.cs",
-              "ToolTip": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Models\\Notification.cs",
-              "RelativeToolTip": "SOMIODMiddleware\\Models\\Notification.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T02:06:44.346Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "RecordController.cs",
-              "DocumentMoniker": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Controllers\\RecordController.cs",
-              "RelativeDocumentMoniker": "SOMIODMiddleware\\Controllers\\RecordController.cs",
-              "ToolTip": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Controllers\\RecordController.cs",
-              "RelativeToolTip": "SOMIODMiddleware\\Controllers\\RecordController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T01:59:54.676Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "NotificationController.cs",
-              "DocumentMoniker": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Controllers\\NotificationController.cs",
-              "RelativeDocumentMoniker": "SOMIODMiddleware\\Controllers\\NotificationController.cs",
-              "ToolTip": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\SOMIODMiddleware\\Controllers\\NotificationController.cs",
-              "RelativeToolTip": "SOMIODMiddleware\\Controllers\\NotificationController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBEAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T01:59:42.124Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\MiddlwareTester\\Form1.cs",
-              "RelativeDocumentMoniker": "MiddlwareTester\\Form1.cs",
-              "ToolTip": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\MiddlwareTester\\Form1.cs",
-              "RelativeToolTip": "MiddlwareTester\\Form1.cs",
-              "ViewState": "AgIAAIAAAAAAAAAAAAAIwIQAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-21T22:04:02.358Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\AppA\\Form1.cs",
-              "RelativeDocumentMoniker": "AppA\\Form1.cs",
-              "ToolTip": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\AppA\\Form1.cs",
-              "RelativeToolTip": "AppA\\Form1.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAYwDoAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-21T17:48:36.824Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Form1.Designer.cs",
-              "DocumentMoniker": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\AppA\\Form1.Designer.cs",
-              "RelativeDocumentMoniker": "AppA\\Form1.Designer.cs",
-              "ToolTip": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\AppA\\Form1.Designer.cs",
-              "RelativeToolTip": "AppA\\Form1.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-21T18:31:56.153Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\AppA\\Form1.cs",
-              "RelativeDocumentMoniker": "AppA\\Form1.cs",
-              "ToolTip": "C:\\Maria\\uni\\3ano\\IS\\PROJETI\\ProjetoIS\\SOMIODMiddleware\\AppA\\Form1.cs [Design]",
-              "RelativeToolTip": "AppA\\Form1.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-21T17:45:07.227Z"
+              "WhenOpened": "2024-12-21T18:35:24.781Z"
             }
           ]
         }

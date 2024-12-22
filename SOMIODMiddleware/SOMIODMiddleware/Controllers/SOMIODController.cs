@@ -26,7 +26,12 @@ namespace SOMIODMiddleware.Controllers
         private readonly NotificationController notificationController = new NotificationController();
         private readonly ControllerHelper controllerHelper = new ControllerHelper();
         private readonly ConnHelper connHelper = new ConnHelper();
-        private Mosquitto mosquitto = new Mosquitto();
+        private readonly Mosquitto mosquitto = new Mosquitto();
+
+        public SOMIODController()
+        {
+            mosquitto.Connect();    //conecta ao mosquito assim que o controller é criado
+        }
 
 
         #region GET Operations
@@ -362,7 +367,7 @@ namespace SOMIODMiddleware.Controllers
 
         #endregion
 
-        #region POST RecordOrNoti
+        #region POST RecordOrNotif
 
 
         [Route("api/somiod/{applicationName}/{containerName}")]
@@ -509,65 +514,6 @@ namespace SOMIODMiddleware.Controllers
         #endregion
 
         #region API Notifications
-
-        /*
-
-        [Route("api/somiod/{applicationName}/{containerName}/notification")]
-        [HttpPost]
-        public IHttpActionResult PostNotification(string applicationName, string containerName)
-        {
-            int applicationId = applicationController.GetApplicationIdByName(applicationName);
-            if (applicationId == 0)
-                return BadRequest("Application does not exist.");
-
-            int containerId = containerController.GetContainerByNameAndParentId(containerName, applicationId);
-            if (containerId == 0)
-                return BadRequest("Container does not exist.");
-
-            XmlNode nodeNotification = controllerHelper.BuildXmlNodeFromRequest("Notification");
-            if (nodeNotification == null)
-            {
-                return BadRequest("Empty request body.");
-            }
-
-            string notificationName = nodeNotification["name"].InnerText;
-            if (string.IsNullOrWhiteSpace(notificationName))
-            {
-                return BadRequest("Notification name is required.");
-            }
-
-            if (notificationController.GetNotificationByNameAndParentId(notificationName, containerId) > 0)
-            {
-                notificationName = notificationName + DateTime.Now.ToString("yyyyMMddHHmmss");
-            }
-
-            string notificationEvent = nodeNotification["event"].InnerText;
-
-            if (string.IsNullOrWhiteSpace(notificationEvent))
-            {
-                return BadRequest("Notification event is required.");
-            }
-            string notificationEndpoint = $"{applicationName}/{containerName}/{notificationEvent}";
-            string name = "";
-            if((notificationEvent == "creation" || notificationEvent == "deletion"))
-            {
-                int id = notificationController.CreateNotification(notificationName, containerId, notificationEvent, notificationEndpoint);
-                name = notificationController.GetNotificationNameById(id);
-            }
-            else if(notificationEvent == "both")
-            {
-                int firstNot = notificationController.CreateNotification(notificationName, containerId, "creation", notificationEndpoint);
-                int secNot = notificationController.CreateNotification(notificationName, containerId, "deletion", notificationEndpoint);
-
-                string name1 = notificationController.GetNotificationNameById(firstNot);
-                string name2 = notificationController.GetNotificationNameById(secNot);
-
-                name = name1 + " and " + name2;
-            }
-            return Ok($"Notification created successfully with name: {name}");
-
-        }
-        */
 
         [Route("api/somiod/{applicationName}/{containerName}/notification/{notificationName}")]
         [HttpDelete]
