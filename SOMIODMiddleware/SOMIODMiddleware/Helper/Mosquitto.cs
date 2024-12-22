@@ -41,6 +41,14 @@ namespace SOMIODMiddleware.Helper
             Console.WriteLine($"Published message to topic {topic}: {message}");
         }
 
+        public void Subscribe(string[] topics)
+        {
+            if (!mqttClient.IsConnected)
+                throw new Exception("MQTT client is not connected.");
+            mqttClient.Subscribe(topics, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
+            Console.WriteLine($"Subscribed to topics: {string.Join(", ", topics)}");
+        }
+
         public void Disconnect()
         {
             if (mqttClient.IsConnected)

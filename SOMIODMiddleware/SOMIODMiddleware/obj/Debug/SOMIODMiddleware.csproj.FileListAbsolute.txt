@@ -654,3 +654,11 @@ C:\Maria\uni\3ano\IS\PROJETI\ProjetoIS\SOMIODMiddleware\SOMIODMiddleware\obj\Deb
 C:\Maria\uni\3ano\IS\PROJETI\ProjetoIS\SOMIODMiddleware\SOMIODMiddleware\obj\Debug\SOMIODMi.6E6450C1.Up2Date
 C:\Maria\uni\3ano\IS\PROJETI\ProjetoIS\SOMIODMiddleware\SOMIODMiddleware\obj\Debug\SOMIODMiddleware.dll
 C:\Maria\uni\3ano\IS\PROJETI\ProjetoIS\SOMIODMiddleware\SOMIODMiddleware\obj\Debug\SOMIODMiddleware.pdb
+C:\Maria\uni\3ano\IS\PROJETI\ProjetoIS\SOMIODMiddleware\SOMIODMiddleware\bin\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Maria\uni\3ano\IS\PROJETI\ProjetoIS\SOMIODMiddleware\SOMIODMiddleware\bin\RestSharp.dll
+C:\Maria\uni\3ano\IS\PROJETI\ProjetoIS\SOMIODMiddleware\SOMIODMiddleware\bin\System.Text.Json.dll
+C:\Maria\uni\3ano\IS\PROJETI\ProjetoIS\SOMIODMiddleware\SOMIODMiddleware\bin\System.ValueTuple.dll
+C:\Maria\uni\3ano\IS\PROJETI\ProjetoIS\SOMIODMiddleware\SOMIODMiddleware\bin\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Maria\uni\3ano\IS\PROJETI\ProjetoIS\SOMIODMiddleware\SOMIODMiddleware\bin\RestSharp.xml
+C:\Maria\uni\3ano\IS\PROJETI\ProjetoIS\SOMIODMiddleware\SOMIODMiddleware\bin\System.Text.Json.xml
+C:\Maria\uni\3ano\IS\PROJETI\ProjetoIS\SOMIODMiddleware\SOMIODMiddleware\bin\System.ValueTuple.xml

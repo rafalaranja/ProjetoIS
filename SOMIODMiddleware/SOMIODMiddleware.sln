@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddlwareTester", "Middlwar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppA", "AppA\AppA.csproj", "{10076EB3-2EF1-4351-8F9C-AD05673F20F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppB", "AppB\AppB.csproj", "{1A7CEB97-7FA6-4DE3-8DD5-DB803764C4D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{10076EB3-2EF1-4351-8F9C-AD05673F20F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10076EB3-2EF1-4351-8F9C-AD05673F20F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10076EB3-2EF1-4351-8F9C-AD05673F20F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A7CEB97-7FA6-4DE3-8DD5-DB803764C4D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A7CEB97-7FA6-4DE3-8DD5-DB803764C4D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A7CEB97-7FA6-4DE3-8DD5-DB803764C4D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A7CEB97-7FA6-4DE3-8DD5-DB803764C4D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

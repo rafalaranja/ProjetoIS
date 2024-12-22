@@ -12,6 +12,7 @@ using System.Net;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using RestSharp;
+using System.Xml;
 
 namespace AppA
 {
@@ -29,12 +30,28 @@ namespace AppA
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
 
+        }
+
+        private string[] ExtractMsgFromXml(string str_xml)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(str_xml);
+            XmlNode rootNode = doc.SelectSingleNode("/notification");
+            String strType = rootNode["type"].InnerText;
+            String strResource = rootNode["resource"].InnerText;
+
+            string[] arrReturn = new string[2];
+
+            arrReturn[0] = strType;
+            arrReturn[1] = strResource;
+
+            return arrReturn;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             //Post aplication
             RestRequest request = new RestRequest("api/somiod", Method.Post);
 
@@ -46,17 +63,52 @@ namespace AppA
 
             var responseApp = client.Execute(request);
 
+            if(responseApp.StatusCode != HttpStatusCode.OK)
+            {
+                MessageBox.Show("Error creating application...");
+                return;
+            }
+
             //Post Container
 
-            RestRequest request2 = new RestRequest($"api/somiod/{applicationName}", Method.Put);
+            RestRequest request2 = new RestRequest($"api/somiod/{applicationName}", Method.Post);
 
             request2.RequestFormat = DataFormat.Xml;
 
             string containerName = "light_bulb";
 
-            request2.AddXmlBody($"<Container>\r\n    <name>{containerName}</name>\r\n</Container>");
+            request2.AddXmlBody($"<Container>\r\n    <name>{containerName}</name> \r\n</Container>");
 
             var responseContainer = client.Execute(request2);
+
+            if (responseContainer.StatusCode != HttpStatusCode.OK)
+            {
+                MessageBox.Show("Error creating container...");
+                return;
+            }
+
+
+            //Post da notificação
+
+            RestRequest request3 = new RestRequest($"api/somiod/{applicationName}/{containerName}", Method.Post);
+
+            request3.RequestFormat = DataFormat.Xml;
+
+            string notificationName = "sub1";
+
+            string @event = "creation";
+
+            string endpoint = "127.0.0.1";
+
+            request3.AddXmlBody($"<Notification>\r\n    <name>{notificationName}</name>\r\n    <event>{@event}</event>\r\n    <endpoint>{endpoint}</endpoint>\r\n</Notification>");
+
+            var responseNotification = client.Execute(request3);
+
+            if (responseNotification.StatusCode != HttpStatusCode.OK)
+            {
+                MessageBox.Show("Error creating notification...");
+                return;
+            }
 
             //Post de subscrever Mqqt
 
@@ -67,31 +119,54 @@ namespace AppA
                 return;
             }
 
-            //subscribe
-            string res_type = "notification";
+            //subscribe channel
 
-            //TODO AINDA
-
-
+            string topic = "light_bulb";
+            m_cClient.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
 
 
+            //receive message
+
+            m_cClient.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
 
             /*
 
-            // Verifica se a requisição foi bem-sucedida
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+
+            m_cClient.MqttMsgPublishReceived += (s, ev) =>
             {
-                // Adiciona o conteúdo da resposta numa MessageB
-                richTextBox1.AppendText(response.Content);
-            }
-            else
-            {
-                // Exibe a mensagem de erro no richTextBox
-                richTextBox1.AppendText($"Error: {response.StatusDescription}");
-            }
+                string receivedMessage = Encoding.UTF8.GetString(ev.Message);
+
+                string[] arrMsg = ExtractMsgFromXml(receivedMessage);
+
+                if (arrMsg[1] == "on")
+                {
+                    textBoxEstado.Text = "Light is on";
+                }
+                else if (arrMsg[1] == "off")
+                {
+                    textBoxEstado.Text = "Light is off";
+                }
+
+            };
+
             */
 
 
         }
+
+        void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
+        {
+            string receivedMessage = Encoding.UTF8.GetString(e.Message);
+            string[] arrMsg = ExtractMsgFromXml(receivedMessage);
+            if (arrMsg[1] == "on")
+            {
+                textBoxEstado.Text = "Light is on";
+            }
+            else if (arrMsg[1] == "off")
+            {
+                textBoxEstado.Text = "Light is off";
+            }
+        }
+
     }
 }
