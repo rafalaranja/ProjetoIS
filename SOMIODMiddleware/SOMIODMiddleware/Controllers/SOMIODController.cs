@@ -170,7 +170,7 @@ namespace SOMIODMiddleware.Controllers
         //GET RECORD
         [Route("api/somiod/{applicationName}/{containerName}/record/{recordName}")]
         [HttpGet]
-        public IHttpActionResult GetRecord(string applicationName, string containerName,string recordName)
+        public IHttpActionResult GetRecord(string applicationName, string containerName, string recordName)
         {
             System.Net.Http.Headers.HttpRequestHeaders headers = this.Request.Headers;
 
@@ -430,7 +430,7 @@ namespace SOMIODMiddleware.Controllers
 
                 // Publicar no broker MQTT
                 mosquitto.Publish($"api/somiod/{applicationName}/{containerName}/creation",
-                    $"<notification><type>creation</type><resource>{recordName}</resource></notification>");
+                    $"<notification><type>creation</type><resource>{recordContent}</resource></notification>");
 
                 return Ok($"Record created successfully with name: {recordName}");
             }
